@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://jjnnq0ew34mh"]
+
+[ext_resource type="Shader" uid="uid://6ddn38ksmknr" path="res://Utils/Schaders/shadow.gdshader" id="1_s2ao8"]
+[ext_resource type="Texture2D" uid="uid://bbw0uyt0jn71d" path="res://Textures/colourtable.png" id="2_lchla"]
+[ext_resource type="Texture2D" uid="uid://b73yy8q0420p5" path="res://Textures/lightingmap.png" id="3_ymsgu"]
+[ext_resource type="Texture2D" uid="uid://pjjwpc4ddf16" path="res://Textures/lighting.png" id="4_1xs3x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r55wg"]
+shader = ExtResource("1_s2ao8")
+shader_parameter/colour_table = ExtResource("2_lchla")
+shader_parameter/lighting_map = ExtResource("3_ymsgu")
+
+[node name="Lighting" type="Sprite2D" unique_id=3300214]
+material = SubResource("ShaderMaterial_r55wg")
+texture = ExtResource("4_1xs3x")
+region_enabled = true
+region_rect = Rect2(992, 992, 32, 16)

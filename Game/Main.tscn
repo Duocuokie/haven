@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://1ae3b2tyk7n7"]
+
+[ext_resource type="Script" uid="uid://de52fc31vmse" path="res://Game/main.gd" id="1_haytw"]
+[ext_resource type="Shader" uid="uid://dn5j13y1a44ol" path="res://Utils/Shaders/dissolve.gdshader" id="3_rchnd"]
+[ext_resource type="Script" uid="uid://fecmplacqkv5" path="res://Game/transition.gd" id="4_3xx61"]
+[ext_resource type="Script" uid="uid://5qs640r6tn2g" path="res://Game/scene_loader.gd" id="8_3xx61"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4hok"]
+shader = ExtResource("3_rchnd")
+shader_parameter/dissolve_value = 0.0
+shader_parameter/mix_ratio = 0.0
+
+[sub_resource type="Gradient" id="Gradient_rl4yr"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f5eub"]
+gradient = SubResource("Gradient_rl4yr")
+width = 105
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eg2md"]
+shader = ExtResource("3_rchnd")
+shader_parameter/dissolve_value = 0.0
+shader_parameter/mix_ratio = 0.0
+
+[node name="Main" type="Node2D" unique_id=33522341 node_paths=PackedStringArray("current_scene")]
+process_mode = 3
+texture_filter = 1
+script = ExtResource("1_haytw")
+current_scene = NodePath("")
+
+[node name="CursorLayer" type="CanvasLayer" parent="." unique_id=1156244149]
+layer = 10
+
+[node name="Transition" type="CanvasLayer" parent="." unique_id=1503547896]
+layer = 20
+script = ExtResource("4_3xx61")
+
+[node name="Trans2" type="Sprite2D" parent="Transition" unique_id=1636447626]
+visible = false
+material = SubResource("ShaderMaterial_c4hok")
+position = Vector2(240, 135)
+texture = SubResource("GradientTexture2D_f5eub")
+
+[node name="Trans1" type="Sprite2D" parent="Transition" unique_id=1099727208]
+material = SubResource("ShaderMaterial_eg2md")
+position = Vector2(240, 135)
+
+[node name="SceneLoader" type="Node2D" parent="." unique_id=2091706238 node_paths=PackedStringArray("transition", "current_scene", "main")]
+script = ExtResource("8_3xx61")
+transition = NodePath("../Transition")
+current_scene = NodePath("")
+main = NodePath("..")

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dcpr26ojlkjdf"]
+
+[ext_resource type="Script" uid="uid://b0ey68v2yj88f" path="res://World/tentacle.gd" id="1_na7ra"]
+[ext_resource type="Shader" uid="uid://dtdsehf0wwv3o" path="res://World/particaltest.gdshader" id="2_2rni1"]
+[ext_resource type="Texture2D" uid="uid://didoo4yeob5pr" path="res://Textures/line/snailline.png" id="2_kad71"]
+[ext_resource type="Texture2D" uid="uid://bbw0uyt0jn71d" path="res://Textures/colourtable.png" id="3_5a1o1"]
+[ext_resource type="Texture2D" uid="uid://b73yy8q0420p5" path="res://Textures/lightingmap.png" id="4_4yfnd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qmu4x"]
+shader = ExtResource("2_2rni1")
+shader_parameter/colour_table = ExtResource("3_5a1o1")
+shader_parameter/lighting_map = ExtResource("4_4yfnd")
+
+[sub_resource type="Curve" id="Curve_qmu4x"]
+resource_local_to_scene = true
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.37262225), 0.0, 0.05047907, 0, 0, Vector2(1, 0.0084068775), -0.8068691, 0.0, 0, 0]
+point_count = 2
+
+[node name="Tentacle" type="Node2D" unique_id=973590780 node_paths=PackedStringArray("main_arm", "shadow")]
+script = ExtResource("1_na7ra")
+main_arm = NodePath("CanvasGroup/Line2D")
+shadow = NodePath("Shadow")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=244319277]
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=628169237]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+render_target_update_mode = 4
+
+[node name="Shadow" type="Line2D" parent="." unique_id=784097483]
+z_index = -1
+material = SubResource("ShaderMaterial_qmu4x")
+points = PackedVector2Array(37, -1, 80, 20, 89, 17)
+width_curve = SubResource("Curve_qmu4x")
+default_color = Color(0.47058824, 0.47058824, 0.47058824, 1)
+joint_mode = 2
+end_cap_mode = 2
+
+[node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=1800281176]
+
+[node name="Line2D" type="Line2D" parent="CanvasGroup" unique_id=1853638937]
+points = PackedVector2Array(0, 0, 26, -4, 31, 0, 39, 5, 53, 4, 62, 9, 71, 15, 82, 23, 88, 34, 97, 43)
+width_curve = SubResource("Curve_qmu4x")
+texture = ExtResource("2_kad71")
+texture_mode = 1
+joint_mode = 2
+end_cap_mode = 2

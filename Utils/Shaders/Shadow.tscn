@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://xggudlm2bbg6"]
+
+[ext_resource type="Material" uid="uid://486carrn02u3" path="res://Utils/Schaders/ShadowMaterial.tres" id="1_o1tcx"]
+[ext_resource type="Texture2D" uid="uid://pjjwpc4ddf16" path="res://Textures/lighting.png" id="4_r55wg"]
+
+[node name="Shadow" type="Sprite2D" unique_id=3300214]
+z_index = -2
+material = ExtResource("1_o1tcx")
+texture = ExtResource("4_r55wg")
+region_enabled = true
+region_rect = Rect2(992, 992, 32, 16)

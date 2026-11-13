@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dvjwei6bllwtl"]
+
+[ext_resource type="PackedScene" uid="uid://cfrxk3wngtww" path="res://World/ColourTest.tscn" id="1_d146p"]
+[ext_resource type="PackedScene" uid="uid://xggudlm2bbg6" path="res://Utils/Schaders/Shadow.tscn" id="1_xkxxu"]
+[ext_resource type="Texture2D" uid="uid://deedwe28wtilj" path="res://Textures/planning.png" id="2_f0wjl"]
+[ext_resource type="Shader" uid="uid://6ddn38ksmknr" path="res://Utils/Schaders/shadow.gdshader" id="6_4turq"]
+[ext_resource type="Texture2D" uid="uid://bbw0uyt0jn71d" path="res://Textures/colourtable.png" id="7_dkd1h"]
+[ext_resource type="Texture2D" uid="uid://b73yy8q0420p5" path="res://Textures/lightingmap.png" id="8_5y5bh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hd2ke"]
+shader = ExtResource("6_4turq")
+shader_parameter/colour_table = ExtResource("7_dkd1h")
+shader_parameter/lighting_map = ExtResource("8_5y5bh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4turq"]
+resource_local_to_scene = true
+shader = ExtResource("6_4turq")
+shader_parameter/colour_table = ExtResource("7_dkd1h")
+shader_parameter/lighting_map = ExtResource("8_5y5bh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0wjl"]
+shader = ExtResource("6_4turq")
+shader_parameter/colour_table = ExtResource("7_dkd1h")
+shader_parameter/lighting_map = ExtResource("8_5y5bh")
+
+[node name="ShadowTest" type="Node2D" unique_id=1287715606]
+metadata/_edit_horizontal_guides_ = [-30.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=96731073]
+position = Vector2(257, -58)
+scale = Vector2(4, 4)
+texture = ExtResource("8_5y5bh")
+
+[node name="ColourTest" parent="." unique_id=1185797302 instance=ExtResource("1_d146p")]
+z_index = -5
+position = Vector2(40, 32)
+texture = ExtResource("2_f0wjl")
+region_rect = Rect2(1168, 256, 352, 308)
+
+[node name="Shadow2" parent="." unique_id=3300214 instance=ExtResource("1_xkxxu")]
+z_index = 2
+material = SubResource("ShaderMaterial_hd2ke")
+position = Vector2(160, 135)
+region_rect = Rect2(752, 976, 56, 48)
+
+[node name="Shadow" parent="." unique_id=1829773632 instance=ExtResource("1_xkxxu")]
+material = SubResource("ShaderMaterial_4turq")
+position = Vector2(214, 129)
+region_rect = Rect2(856, 984, 48, 32)
+
+[node name="Shadow3" parent="." unique_id=1860994429 instance=ExtResource("1_xkxxu")]
+z_index = 2
+material = SubResource("ShaderMaterial_f0wjl")
+position = Vector2(98, 92)
+region_rect = Rect2(808, 976, 48, 44)

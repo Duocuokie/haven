@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dk0hrdk1b4hwl"]
+
+[ext_resource type="Texture2D" uid="uid://b6t47lf32p80a" path="res://icon.svg" id="1_y6flb"]
+[ext_resource type="Script" uid="uid://dlhgk44oeljas" path="res://World/icon.gd" id="2_mlekv"]
+
+[sub_resource type="TileSet" id="TileSet_c4hok"]
+
+[node name="World" type="Node2D" unique_id=27136251]
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=817033211]
+position = Vector2(246, 127)
+texture = ExtResource("1_y6flb")
+script = ExtResource("2_mlekv")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2045188867]
+tile_set = SubResource("TileSet_c4hok")

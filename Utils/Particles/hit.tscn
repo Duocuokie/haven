@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://bgmg7qe01dlaf"]
+
+[ext_resource type="Texture2D" uid="uid://dfspa6smtxi0m" path="res://Textures/misc.png" id="1_g6bbe"]
+[ext_resource type="Script" uid="uid://bot7ykq5g2125" path="res://Utils/particles/hit.gd" id="2_8f1vh"]
+[ext_resource type="Texture2D" uid="uid://deedwe28wtilj" path="res://Textures/planning.png" id="3_jdbnn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq2xq"]
+atlas = ExtResource("1_g6bbe")
+region = Rect2(832, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yqos"]
+atlas = ExtResource("1_g6bbe")
+region = Rect2(864, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ugyas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sq2xq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yqos")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l735"]
+atlas = ExtResource("3_jdbnn")
+region = Rect2(288, 696, 4, 4)
+
+[sub_resource type="Gradient" id="Gradient_jdbnn"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.6786075)
+colors = PackedColorArray(0.99215686, 0.9882353, 0.9019608, 1, 0.9607843, 0.8901961, 0.36862746, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_agg1k"]
+gradient = SubResource("Gradient_jdbnn")
+
+[sub_resource type="Curve" id="Curve_38mjk"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1.4616399), 0.0, -0.27917656, 0, 0, Vector2(0.7523716, 0.3893522), -1.4132912, -1.4132912, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kd2je"]
+curve = SubResource("Curve_38mjk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_su03o"]
+particle_flag_disable_z = true
+angle_min = -269.8
+angle_max = 262.6
+direction = Vector3(0, -1, 0)
+spread = 5.0
+flatness = 0.075
+initial_velocity_min = 25.0
+initial_velocity_max = 150.0
+angular_velocity_min = -125.140015
+angular_velocity_max = 226.55998
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -50.7
+linear_accel_max = -29.690002
+scale_curve = SubResource("CurveTexture_kd2je")
+color_ramp = SubResource("GradientTexture1D_agg1k")
+
+[node name="hit" type="AnimatedSprite2D" unique_id=2041942946]
+z_index = 20
+sprite_frames = SubResource("SpriteFrames_ugyas")
+animation = &"hit"
+frame = 1
+frame_progress = 1.0
+script = ExtResource("2_8f1vh")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1860471560]
+emitting = false
+texture = SubResource("AtlasTexture_6l735")
+lifetime = 0.17
+one_shot = true
+explosiveness = 1.0
+randomness = 0.16
+fixed_fps = 24
+process_material = SubResource("ParticleProcessMaterial_su03o")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="." unique_id=1699497428]
+rotation = 3.1415927
+emitting = false
+texture = SubResource("AtlasTexture_6l735")
+lifetime = 0.17
+one_shot = true
+explosiveness = 0.93
+randomness = 0.16
+fixed_fps = 24
+process_material = SubResource("ParticleProcessMaterial_su03o")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
