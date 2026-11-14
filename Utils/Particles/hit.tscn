@@ -1,33 +1,31 @@
 [gd_scene format=3 uid="uid://bgmg7qe01dlaf"]
 
-[ext_resource type="Texture2D" uid="uid://dfspa6smtxi0m" path="res://Textures/misc.png" id="1_g6bbe"]
-[ext_resource type="Script" uid="uid://bot7ykq5g2125" path="res://Utils/particles/hit.gd" id="2_8f1vh"]
-[ext_resource type="Texture2D" uid="uid://deedwe28wtilj" path="res://Textures/planning.png" id="3_jdbnn"]
+[ext_resource type="Texture2D" uid="uid://d3ngno6mphcds" path="res://Assets/Texture/misc.png" id="1_w488y"]
+[ext_resource type="Script" uid="uid://bv0huynjxrju8" path="res://Utils/Particles/hit.gd" id="2_jjk54"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sq2xq"]
-atlas = ExtResource("1_g6bbe")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjk54"]
+atlas = ExtResource("1_w488y")
 region = Rect2(832, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4yqos"]
-atlas = ExtResource("1_g6bbe")
+[sub_resource type="AtlasTexture" id="AtlasTexture_hymin"]
+atlas = ExtResource("1_w488y")
 region = Rect2(864, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ugyas"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sq2xq")
+"texture": SubResource("AtlasTexture_jjk54")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4yqos")
+"texture": SubResource("AtlasTexture_hymin")
 }],
-"loop": false,
+"loop": 0,
 "name": &"hit",
 "speed": 12.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6l735"]
-atlas = ExtResource("3_jdbnn")
 region = Rect2(288, 696, 4, 4)
 
 [sub_resource type="Gradient" id="Gradient_jdbnn"]
@@ -69,7 +67,7 @@ sprite_frames = SubResource("SpriteFrames_ugyas")
 animation = &"hit"
 frame = 1
 frame_progress = 1.0
-script = ExtResource("2_8f1vh")
+script = ExtResource("2_jjk54")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1860471560]
 emitting = false

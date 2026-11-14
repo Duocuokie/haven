@@ -1,5 +1,12 @@
 [gd_scene format=3 uid="uid://dg2rhskih4jmo"]
 
+[sub_resource type="Curve" id="Curve_fetw6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.286742, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qhqcv"]
+curve = SubResource("Curve_fetw6")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bel2u"]
 particle_flag_disable_z = true
 angle_min = -110.69999
@@ -12,6 +19,7 @@ damping_min = 2.9570003
 damping_max = 4.57
 scale_min = 4.0
 scale_max = 4.0
+scale_curve = SubResource("CurveTexture_qhqcv")
 color = Color(1, 0.22352941, 0, 1)
 
 [node name="BigHitBallParticle" type="GPUParticles2D" unique_id=1823119928]

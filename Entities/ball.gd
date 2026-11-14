@@ -6,16 +6,17 @@ signal small_attack_hit
 @onready var invince_timer: Timer = $InvinceTimer
 @onready var small_hit: AudioStreamPlayer = $SmallHit
 @onready var big_hit: AudioStreamPlayer = $BigHit
-@onready var hit_particle : GPUParticles2D = $HitBallParticle
+@onready var big_hit_ball_particle : GPUParticles2D = $BigHitBallParticle
+const HIT = preload("uid://bgmg7qe01dlaf")
 
 
 var gravity = 700
 
-var juggle_grav = 480
+var juggle_grav = 450
 var throw_grav = 750
 
 var friction = 1000
-var air_res = 20
+var air_res = 35
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
@@ -25,10 +26,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, air_res * delta)
 	if collision:
-		var bounce_velocity : Vector2 = velocity.length() * 0.5* (velocity.bounce(collision.get_normal()).normalized())
+		var bounce_velocity : Vector2 = 0.5* (velocity.bounce(collision.get_normal()))
 		velocity = bounce_velocity
 	else:
 		move_and_slide()
+	if is_on_floor():
+		pass
 
 
 
@@ -44,7 +47,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			small_hit.play()
 			
 			velocity = area.direction * 330
-			hit_particle.emitting = true
+			velocity.x *= 0.85
+			big_hit_ball_particle.emitting = true
 			
 		else:
 			small_attack_hit.emit()
@@ -52,5 +56,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			SignalBus.noise_shake.emit(8)
 			small_hit.play()
 			
-			velocity = area.direction * 280
+			velocity = area.direction * 275
 			
+		var h : Node2D = HIT.instantiate()
+		h.global_position = global_position
+		SignalBus.spawn_effect.emit(h)
+
+
+func _on_grounded_timer_timeout() -> void:
+	pass # Replace with function body.
