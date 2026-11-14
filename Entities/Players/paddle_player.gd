@@ -14,7 +14,7 @@ class_name  Player
 @onready var sprite: Sprite2D = $Sprite2D
 
 
-var SPEED = 200.0
+var SPEED = 180.0
 const JUMP_VELOCITY = -330.0
 var ACCEL = 2000.0 
 const  FRICT = 1500.0
@@ -40,23 +40,29 @@ var max_charge = 3
 	#global_position=Global.checkpoint
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("attack") and charge >= max_charge:
+	if Input.is_action_pressed(Utils.controls[Utils.paddle_controller]["attack"]) and charge >= max_charge:
 		hold_amount += delta
 		Engine.time_scale = lerp(Engine.time_scale, 0.5, 10 * delta)
 	else:
 		Engine.time_scale = 1.00
 		
 		
-	if Input.is_action_just_released("attack"):
+	if Input.is_action_just_released(Utils.controls[Utils.paddle_controller]["attack"]):
+		var direction : Vector2
+		if Utils.paddle_controller == 0:
+			direction = global_position.direction_to(get_global_mouse_position())
+		else:
+			direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
+			
 		if charge >= max_charge and hold_amount > 0.2:
 			attack_anim.play("attack2")
-			player_attack_2.rotation = global_position.angle_to_point(get_global_mouse_position())
-			player_attack_2.direction = global_position.direction_to(get_global_mouse_position())
+			player_attack_2.rotation = direction.angle()
+			player_attack_2.direction = direction
 			charge = 0
 		else:
 			attack_anim.play("attack")
-			player_attack.rotation = global_position.angle_to_point(get_global_mouse_position())
-			player_attack.direction = global_position.direction_to(get_global_mouse_position())
+			player_attack.rotation = direction.angle()
+			player_attack.direction = direction
 		hold_amount = 0
 		
 

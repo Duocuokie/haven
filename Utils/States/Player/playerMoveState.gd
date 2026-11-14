@@ -20,8 +20,11 @@ var accel : int
 var big_bounce := false
 var was_in_air := false
 var prev_pos
+var control = Utils.paddle_controller
 
 func _ready():
+	if actor is Ball:
+		control = (control +1) % 2
 	set_physics_process(false)
 	accel = actor.ACCEL
 	
@@ -37,13 +40,12 @@ func _physics_process(delta):
 	#if actor is Ball:
 		#ball = actor
 		#print(ball.ray.is_colliding())
-	print(abs(actor.velocity.x))
 	var balls : bool= not (actor is Ball and not (actor.is_on_floor() or actor.ray.is_colliding()))
 	if actor is Ball:
-		if Input.is_action_pressed("otherjump"):
+		if Input.is_action_pressed(Utils.controls[control]["jump"]):
 			if was_in_air and actor.is_on_floor() and abs(actor.global_position.x - prev_pos.x) < 1:
 				actor.velocity.x = 0
-				actor.velocity.y = actor.JUMP_VELOCITY * 2
+				actor.velocity.y = actor.JUMP_VELOCITY * 1.5
 				big_bounce = true
 	if not actor.is_on_floor():
 		if actor.wasOnFloor && !actor.jumped:
@@ -66,7 +68,7 @@ func _physics_process(delta):
 		actor.wasOnFloor = true
 		accel = actor.ACCEL * 1.1
 	if balls:
-		direction = Input.get_axis(left, right)
+		direction = Input.get_axis(Utils.controls[control]["left"], Utils.controls[control]["right"])
 	if big_bounce:
 		direction = 0
 	if direction != 0:
@@ -82,7 +84,7 @@ func _physics_process(delta):
 
 	#camera.position.x = move_toward(camera.position.x, 96 * direction, 128 * delta)
 	
-	if (Input.is_action_just_pressed(jump) || buffer) and can_jump:
+	if (Input.is_action_just_pressed(Utils.controls[control]["jump"]) || buffer) and can_jump:
 		if actor.is_on_floor() || actor.coyote:
 			actor.velocity.y = actor.JUMP_VELOCITY
 			actor.jumped = true
@@ -91,7 +93,7 @@ func _physics_process(delta):
 				bufferTimer.start()
 				buffer = true
 	else:
-		if Input.is_action_just_released(jump) && actor.velocity.y < 0 and !big_bounce:
+		if Input.is_action_just_released(Utils.controls[control]["jump"]) && actor.velocity.y < 0 and !big_bounce:
 			actor.velocity.y = actor.velocity.y / 2
 			
 	prev_pos = actor.global_position

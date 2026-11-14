@@ -14,9 +14,9 @@ signal grounded
 @onready var ground_timer: Timer = $GroundTimer
 
 const HIT = preload("uid://bgmg7qe01dlaf")
-var SPEED = 150.0
+var SPEED = 120.0
 const JUMP_VELOCITY = -150.0
-var ACCEL = 800.0 
+var ACCEL = 700.0 
 const  FRICT = 800.0
 
 
@@ -62,9 +62,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	invince_timer.start()
 	var direction : Vector2
 	if area is PlayerAttack:
-		if area.global_position.direction_to(global_position).dot(Vector2.UP) < 0.1 and has_been_grounded:
+		if area.global_position.direction_to(global_position).dot(Vector2.UP) < 0.1 and has_been_grounded and false:
 			direction = area.global_position.direction_to(global_position)
-		else: direction = area.direction
+		else: 
+			
+			direction = area.direction
 		if area.big_attack:
 			big_attack_hit.emit()
 			SignalBus.small_pause.emit(0.1)
