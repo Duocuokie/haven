@@ -11,7 +11,6 @@ curve = SubResource("Curve_fetw6")
 particle_flag_disable_z = true
 angle_min = -110.69999
 angle_max = 210.50002
-inherit_velocity_ratio = 0.49
 spread = 180.0
 initial_velocity_max = 50.0
 gravity = Vector3(0, 490, 0)

@@ -11,9 +11,9 @@ curve = SubResource("Curve_dtbvo")
 particle_flag_disable_z = true
 angle_min = 1.0728835e-05
 angle_max = 1.0728835e-05
-inherit_velocity_ratio = 0.225
-spread = 180.0
-initial_velocity_max = 35.6
+spread = 179.755
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
 gravity = Vector3(0, 490, 0)
 damping_min = 2.9570003
 damping_max = 4.57
@@ -24,7 +24,7 @@ color = Color(1, 0.22352941, 0, 1)
 
 [node name="SmallHitBallParticle" type="GPUParticles2D" unique_id=1574565320]
 emitting = false
-lifetime = 0.2
+lifetime = 0.3
 one_shot = true
 explosiveness = 0.89
 process_material = SubResource("ParticleProcessMaterial_rj5iy")

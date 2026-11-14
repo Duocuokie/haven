@@ -86,8 +86,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			velocity = area.direction * 330
 			velocity.x *= 0.85
 			big_hit_ball_particle.emitting = true
-			
-			
+			big_hit_ball_particle.process_material.set_meta("direction", area.direction)
 		else:
 			Input.start_joy_vibration(0, 0.5, 0.3, 0.1)
 			small_attack_hit.emit()

@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 			var ball_applied_vel := ball.global_position.direction_to(player.global_position) * (21* dist - 3 * ball.velocity.length()) * delta
 			if ball_applied_vel.y > 0:
 				ball_applied_vel.y *= 0.68
-				ball_applied_vel.x *= 1.3
+				ball_applied_vel.x *= 1.2
 			else: 
 				ball_applied_vel.y *= 1.1
 			ball.velocity += Vector2(ball_applied_vel.x, ball_applied_vel.y)
