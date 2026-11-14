@@ -59,6 +59,6 @@ stream = SubResource("AudioStreamRandomizer_c4hok")
 [node name="BigHit" type="AudioStreamPlayer" parent="." unique_id=1319196335]
 stream = SubResource("AudioStreamRandomizer_6obgi")
 
-[node name="HitBallParticle" parent="." unique_id=1823119928 instance=ExtResource("10_qhqcv")]
+[node name="BigHitBallParticle" parent="." unique_id=1823119928 instance=ExtResource("10_qhqcv")]
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
