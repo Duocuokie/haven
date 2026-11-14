@@ -1,7 +1,7 @@
 extends Node2D
 class_name PaddleBall
 
-@onready var line: Line2D = $Line2D
+@onready var line: Line2D = $StringLine
 @onready var player: Player = $Player
 @onready var ball: Ball = $Ball
 
@@ -19,8 +19,6 @@ func _ready() -> void:
 	
 
 func _physics_process(delta: float) -> void:
-	line.global_position = player.global_position
-	line.set_point_position(1, ball.global_position - player.global_position)
 	var dist := player.global_position.distance_to(ball.global_position)
 	
 	if ball.velocity.length() < 20 and ball.is_on_floor():
