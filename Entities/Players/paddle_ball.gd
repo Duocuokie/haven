@@ -16,9 +16,10 @@ func _ready() -> void:
 	ball.small_attack_hit.connect(func(): 
 		state = paddle_state.JUGGLE
 		player.charge = clamp(player.charge + 1, 0, 3)
-		max_string_paddle = 65 + player.charge * 5)
+		max_string_paddle = 65 + player.charge * 6)
 	ball.grounded.connect(func():
 		player.charge = 0)
+	player.charge_change.connect(func(x:int): ball.sprite.frame = x)
 	
 
 func _physics_process(delta: float) -> void:

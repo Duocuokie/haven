@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://chxjmd50wnxl8" path="res://Assets/Texture/bg/bg7.png" id="10_s53j1"]
 [ext_resource type="Texture2D" uid="uid://bx7e3c5cssbp1" path="res://Assets/Texture/bg/bg6.png" id="10_v0w7q"]
 [ext_resource type="AudioStream" uid="uid://dswpxo6jj05qb" path="res://Assets/Audio/haven.ogg" id="11_ecnql"]
+[ext_resource type="PackedScene" uid="uid://fdeh706vlnad" path="res://World/Semisolid.tscn" id="12_l2bp3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_il6x7"]
 texture = ExtResource("3_mlekv")
@@ -520,6 +521,20 @@ screen_offset = Vector2(0, -160)
 
 [node name="Sprite2D" type="Sprite2D" parent="Level/Paralax/Parallax2D6" unique_id=636868076]
 texture = ExtResource("10_s53j1")
+
+[node name="Semisolids" type="Node2D" parent="Level" unique_id=497197523]
+
+[node name="Semisolid" parent="Level/Semisolids" unique_id=281802750 instance=ExtResource("12_l2bp3")]
+offset_left = -128.0
+offset_top = 144.0
+offset_right = -64.0
+offset_bottom = 148.0
+
+[node name="Semisolid2" parent="Level/Semisolids" unique_id=272468750 instance=ExtResource("12_l2bp3")]
+offset_left = -144.0
+offset_top = 64.0
+offset_right = -112.0
+offset_bottom = 68.0
 
 [node name="SmallPause" type="Timer" parent="." unique_id=997796193]
 wait_time = 0.1

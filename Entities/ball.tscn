@@ -40,8 +40,9 @@ script = ExtResource("1_d86gr")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=63136891]
 texture = ExtResource("1_3auol")
+hframes = 4
 region_enabled = true
-region_rect = Rect2(32, 112, 32, 32)
+region_rect = Rect2(32, 112, 128, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513096500]
 shape = SubResource("CircleShape2D_c4hok")
@@ -70,7 +71,6 @@ lifetime = 1.0
 one_shot = true
 
 [node name="SmallHitBallParticle" parent="." unique_id=1574565320 instance=ExtResource("11_h8df2")]
-lifetime = 0.15000000000000002
 
 [node name="StateMachine" parent="." unique_id=501441417 node_paths=PackedStringArray("state") instance=ExtResource("12_p5jf5")]
 state = NodePath("PlayerMoveState")

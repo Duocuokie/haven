@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://fdeh706vlnad"]
+
+[ext_resource type="Texture2D" uid="uid://drtqaavux5puu" path="res://Assets/Texture/spritesheet.png" id="1_4w7yj"]
+[ext_resource type="Script" uid="uid://cwe6td3wbb5d4" path="res://World/semisolid.gd" id="2_rm5u5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4hok"]
+atlas = ExtResource("1_4w7yj")
+region = Rect2(204, 16, 24, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6obgi"]
+resource_local_to_scene = true
+size = Vector2(30, 1)
+
+[node name="Semisolid" type="NinePatchRect" unique_id=281802750]
+offset_right = 32.0
+offset_bottom = 4.0
+texture = SubResource("AtlasTexture_c4hok")
+patch_margin_left = 4
+patch_margin_right = 4
+axis_stretch_horizontal = 1
+script = ExtResource("2_rm5u5")
+
+[node name="Semisolid" type="Node2D" parent="." unique_id=363276288]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1604803582]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=644291214]
+position = Vector2(16, 0.5)
+shape = SubResource("RectangleShape2D_6obgi")
+one_way_collision = true
