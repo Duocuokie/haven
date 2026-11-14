@@ -1,6 +1,6 @@
 extends Node
 
-var paddle_controller = 1
+var paddle_controller = 0
 var controls = [
 	{
 		"left" : "left",
