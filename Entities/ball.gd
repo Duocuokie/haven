@@ -66,9 +66,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	invince_timer.start()
 	var direction : Vector2
 	if area is PlayerAttack:
-		print(area.global_position.direction_to(global_position))
-		print(area.global_position.direction_to(global_position).dot(Vector2.UP))
-		if area.global_position.direction_to(global_position).dot(Vector2.UP) < 0.0 and ray.is_colliding():
+		if area.global_position.direction_to(global_position).dot(Vector2.UP) < 0.0 and has_been_grounded:
 			direction = area.global_position.direction_to(global_position)
 		else: 
 			
