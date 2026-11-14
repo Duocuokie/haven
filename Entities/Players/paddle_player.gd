@@ -11,10 +11,11 @@ class_name  Player
 @onready var attack_anim: AnimationPlayer = $AttackAnim
 @onready var player_attack: Area2D = $PlayerAttack
 @onready var player_attack_2: PlayerAttack = $PlayerAttack2
+@onready var sprite: Sprite2D = $Sprite2D
 
 
 var SPEED = 200.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -330.0
 var ACCEL = 2000.0 
 const  FRICT = 1500.0
 var gravity = 700
@@ -57,6 +58,8 @@ func _physics_process(delta: float) -> void:
 			player_attack.rotation = global_position.angle_to_point(get_global_mouse_position())
 			player_attack.direction = global_position.direction_to(get_global_mouse_position())
 		hold_amount = 0
+		
+
 #func _physics_process(delta: float) -> void:
 	#if velocity.x != 0:
 		#sprite.rotation_degrees += (velocity.length() * sign(velocity.x) * 0.04)

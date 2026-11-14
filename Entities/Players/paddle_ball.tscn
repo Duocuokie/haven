@@ -9,7 +9,7 @@
 script = ExtResource("1_holci")
 
 [node name="Player" parent="." unique_id=551209235 instance=ExtResource("2_lq8qy")]
-z_index = 10
+z_index = 4
 
 [node name="Ball" parent="." unique_id=342246280 instance=ExtResource("3_p6ew4")]
 z_index = 10
