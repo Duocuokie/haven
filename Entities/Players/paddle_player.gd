@@ -41,7 +41,7 @@ var max_charge = 3
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("attack") and charge >= max_charge:
 		hold_amount += delta
-		Engine.time_scale = 0.75
+		Engine.time_scale = lerp(Engine.time_scale, 0.5, 10 * delta)
 	else:
 		Engine.time_scale = 1.00
 		

@@ -21,13 +21,13 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var dist := player.global_position.distance_to(ball.global_position)
 	
-	if ball.velocity.length() < 20 and ball.is_on_floor():
+	if ball.velocity.length() < 30 and ball.is_on_floor():
 		state = paddle_state.STILL
 		
 	if state == paddle_state.THROW:
 		ball.gravity = ball.throw_grav
 		if dist > max_string_length:
-			var applied_vel := player.global_position.direction_to(ball.global_position) * (40* dist - 2 * player.velocity.length()) * delta
+			var applied_vel := player.global_position.direction_to(ball.global_position) * (40* dist - 4 * player.velocity.length()) * delta
 			player.velocity += Vector2(applied_vel.x, applied_vel.y *0.8)
 			var ball_applied_vel := ball.global_position.direction_to(player.global_position) * (5* dist - 3 * ball.velocity.length()) * delta
 			ball.velocity += Vector2(ball_applied_vel.x, ball_applied_vel.y *0.8)
@@ -36,10 +36,10 @@ func _physics_process(delta: float) -> void:
 		if dist > max_string_paddle:
 			#var applied_vel := player.global_position.direction_to(ball.global_position) * 200 * delta
 			#player.velocity += Vector2(applied_vel.x, applied_vel.y *0.8)
-			var ball_applied_vel := ball.global_position.direction_to(player.global_position) * (25* dist - 2 * ball.velocity.length()) * delta
+			var ball_applied_vel := ball.global_position.direction_to(player.global_position) * (22* dist - 3 * ball.velocity.length()) * delta
 			if ball_applied_vel.y > 0:
-				ball_applied_vel.y *= 0.75
-				ball_applied_vel.x *= 1.2
+				ball_applied_vel.y *= 0.72
+				ball_applied_vel.x *= 1.3
 			else: 
 				ball_applied_vel.y *= 1.1
 			ball.velocity += Vector2(ball_applied_vel.x, ball_applied_vel.y)
@@ -49,5 +49,5 @@ func _physics_process(delta: float) -> void:
 		if dist > max_string_length:
 			var applied_vel := player.global_position.direction_to(ball.global_position) * (35* dist - 3 * player.velocity.length()) * delta
 			player.velocity += Vector2(applied_vel.x, applied_vel.y *0.8)
-			var ball_applied_vel := ball.global_position.direction_to(player.global_position) * (5* dist - 2 * ball.velocity.length()) * delta
+			var ball_applied_vel := ball.global_position.direction_to(player.global_position) * (20* dist - 2 * ball.velocity.length()) * delta
 			ball.velocity += Vector2(ball_applied_vel.x, ball_applied_vel.y *0.8)

@@ -10,7 +10,7 @@ signal small_attack_hit
 
 var gravity = 700
 
-var juggle_grav = 500
+var juggle_grav = 480
 var throw_grav = 750
 
 var friction = 1000
