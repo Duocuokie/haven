@@ -10,6 +10,10 @@
 [ext_resource type="AudioStream" uid="uid://cn2ffec2f51jr" path="res://Assets/Audio/crit2.ogg" id="8_xhe7f"]
 [ext_resource type="AudioStream" uid="uid://diqa0pli1ub0s" path="res://Assets/Audio/crit3.ogg" id="9_kfeb2"]
 [ext_resource type="PackedScene" uid="uid://dg2rhskih4jmo" path="res://UNSORTED/big_hit_ball_particle.tscn" id="10_qhqcv"]
+[ext_resource type="PackedScene" uid="uid://cnircrqdt3pnp" path="res://UNSORTED/small_hit_ball_particle.tscn" id="11_h8df2"]
+[ext_resource type="PackedScene" uid="uid://baeqwhjus5ay3" path="res://Utils/States/stateMachine.tscn" id="12_p5jf5"]
+[ext_resource type="PackedScene" uid="uid://dded5e5ii6l1h" path="res://Utils/States/Player/PlayerMoveState.tscn" id="13_xhe7f"]
+[ext_resource type="PackedScene" uid="uid://ctr08g4aivhp2" path="res://Utils/States/nostate.tscn" id="14_xhe7f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4hok"]
 radius = 9.0
@@ -65,5 +69,27 @@ lifetime = 1.0
 [node name="GroundedTimer" type="Timer" parent="." unique_id=410179629]
 one_shot = true
 
+[node name="SmallHitBallParticle" parent="." unique_id=1574565320 instance=ExtResource("11_h8df2")]
+lifetime = 0.15000000000000002
+
+[node name="StateMachine" parent="." unique_id=501441417 node_paths=PackedStringArray("state") instance=ExtResource("12_p5jf5")]
+state = NodePath("PlayerMoveState")
+
+[node name="PlayerMoveState" parent="StateMachine" unique_id=2088656269 node_paths=PackedStringArray("actor", "coyoteTimer", "sprite") instance=ExtResource("13_xhe7f")]
+actor = NodePath("../..")
+coyoteTimer = NodePath("../../CoyoteTimer")
+left = "otherleft"
+right = "otherright"
+jump = "otherjump"
+sprite = NodePath("../../Sprite2D")
+
+[node name="nostate" parent="StateMachine" unique_id=41375804 instance=ExtResource("14_xhe7f")]
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=872656197]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="GroundedTimer" to="." method="_on_grounded_timer_timeout"]
+
+[editable path="StateMachine/PlayerMoveState"]
