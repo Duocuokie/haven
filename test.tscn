@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c5tbeilw7gla"]
+
+[ext_resource type="Shader" uid="uid://dcgqcbclkmpd4" path="res://UNSORTED/fisheye.gdshader" id="1_37kl0"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c0d7q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_37kl0"]
+shader = ExtResource("1_37kl0")
+shader_parameter/center_uv = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.0
+shader_parameter/power = 0.90000000596048
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1324497997]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=379104119]
+offset_left = -448.0
+offset_top = -184.0
+offset_right = -311.0
+offset_bottom = -120.0
+scale = Vector2(8, 8)
+texture = SubResource("PlaceholderTexture2D_c0d7q")
+stretch_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=932389317]
+material = SubResource("ShaderMaterial_37kl0")
+offset_left = -560.0
+offset_top = -176.0
+offset_right = 784.0
+offset_bottom = 408.0
