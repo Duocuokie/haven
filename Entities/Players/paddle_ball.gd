@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 		ball.gravity = ball.throw_grav
 		
 		if dist > max_string_length:
-			var applied_vel := player.global_position.direction_to(ball.global_position) * (35* dist - 1 * player.velocity.length()) * delta
+			var applied_vel := player.global_position.direction_to(ball.global_position) * (35* dist - 3 * player.velocity.length()) * delta
 			player.velocity += Vector2(applied_vel.x, applied_vel.y *0.8)
 			var ball_applied_vel := ball.global_position.direction_to(player.global_position) * (5* dist - 2 * ball.velocity.length()) * delta
 			ball.velocity += Vector2(ball_applied_vel.x, ball_applied_vel.y *0.8)
