@@ -30,6 +30,12 @@ window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 window/stretch/scale_mode="integer"
 
+[file_customization]
+
+folder_colors={
+"res://UNSORTED/": "red"
+}
+
 [input]
 
 up={
