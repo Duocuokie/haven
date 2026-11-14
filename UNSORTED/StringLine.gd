@@ -19,14 +19,15 @@ func calculate_points() -> void:
 		increment *= -1
 		h *= -1
 		v *= -1
+	
 	if Length**2 > (h**2 + v**2):
 		var a = 1
 		# parametric equation idk
-		var step = 1
+		var step = 0.1
 		while sqrt(Length**2 - v**2) < (2 * a * sinh(h/(2*a))):
 			a += step
 		# find suitable value for a
-		
+		# around h = 10, the length starts decreasing due to q going up
 		var p = (h - a * log((Length + v)/(Length - v)))/2
 		var q = (v - Length * (cosh(h/(2*a))/sinh(h/(2*a))))/2
 		if v == 0: q = 0
