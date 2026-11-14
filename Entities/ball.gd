@@ -14,9 +14,9 @@ signal grounded
 @onready var ground_timer: Timer = $GroundTimer
 
 const HIT = preload("uid://bgmg7qe01dlaf")
-var SPEED = 120.0
+var SPEED = 135.0
 const JUMP_VELOCITY = -150.0
-var ACCEL = 700.0 
+var ACCEL = 500.0 
 const  FRICT = 800.0
 
 

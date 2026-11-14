@@ -14,9 +14,9 @@ class_name  Player
 @onready var sprite: Sprite2D = $Sprite2D
 
 
-var SPEED = 180.0
+var SPEED = 150.0
 const JUMP_VELOCITY = -330.0
-var ACCEL = 2000.0 
+var ACCEL = 1000.0 
 const  FRICT = 1500.0
 var gravity = 700
 
