@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bgeqjafhulcbr" path="res://Assets/Audio/crit1.ogg" id="7_p5jf5"]
 [ext_resource type="AudioStream" uid="uid://cn2ffec2f51jr" path="res://Assets/Audio/crit2.ogg" id="8_xhe7f"]
 [ext_resource type="AudioStream" uid="uid://diqa0pli1ub0s" path="res://Assets/Audio/crit3.ogg" id="9_kfeb2"]
-[ext_resource type="PackedScene" uid="uid://dg2rhskih4jmo" path="res://UNSORTED/hit_ball_particle.tscn" id="10_qhqcv"]
+[ext_resource type="PackedScene" uid="uid://dg2rhskih4jmo" path="res://UNSORTED/big_hit_ball_particle.tscn" id="10_qhqcv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4hok"]
 radius = 9.0
