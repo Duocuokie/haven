@@ -2,11 +2,32 @@
 
 [ext_resource type="Texture2D" uid="uid://drtqaavux5puu" path="res://Assets/Texture/spritesheet.png" id="1_3auol"]
 [ext_resource type="Script" uid="uid://dcrmtj1vw8dc8" path="res://Entities/ball.gd" id="1_d86gr"]
+[ext_resource type="AudioStream" uid="uid://dfg5u1sx2pala" path="res://Assets/Audio/hit.ogg" id="3_lcuwh"]
+[ext_resource type="AudioStream" uid="uid://y2jxuhlcjqda" path="res://Assets/Audio/hit2.ogg" id="4_qhqcv"]
+[ext_resource type="AudioStream" uid="uid://2coynst38tfm" path="res://Assets/Audio/hit3.ogg" id="5_h8df2"]
+[ext_resource type="AudioStream" uid="uid://cwuvmu2ko7yd2" path="res://Assets/Audio/hit4.ogg" id="6_0xsfo"]
+[ext_resource type="AudioStream" uid="uid://bgeqjafhulcbr" path="res://Assets/Audio/crit1.ogg" id="7_p5jf5"]
+[ext_resource type="AudioStream" uid="uid://cn2ffec2f51jr" path="res://Assets/Audio/crit2.ogg" id="8_xhe7f"]
+[ext_resource type="AudioStream" uid="uid://diqa0pli1ub0s" path="res://Assets/Audio/crit3.ogg" id="9_kfeb2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4hok"]
 radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6obgi"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c4hok"]
+random_pitch = 1.0800389
+streams_count = 4
+stream_0/stream = ExtResource("3_lcuwh")
+stream_1/stream = ExtResource("4_qhqcv")
+stream_2/stream = ExtResource("5_h8df2")
+stream_3/stream = ExtResource("6_0xsfo")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6obgi"]
+streams_count = 3
+stream_0/stream = ExtResource("7_p5jf5")
+stream_1/stream = ExtResource("8_xhe7f")
+stream_2/stream = ExtResource("9_kfeb2")
 
 [node name="Ball" type="CharacterBody2D" unique_id=342246280]
 collision_layer = 0
@@ -30,5 +51,11 @@ shape = SubResource("CircleShape2D_6obgi")
 [node name="InvinceTimer" type="Timer" parent="." unique_id=212214198]
 wait_time = 0.2
 one_shot = true
+
+[node name="SmallHit" type="AudioStreamPlayer" parent="." unique_id=1271807577]
+stream = SubResource("AudioStreamRandomizer_c4hok")
+
+[node name="BigHit" type="AudioStreamPlayer" parent="." unique_id=1319196335]
+stream = SubResource("AudioStreamRandomizer_6obgi")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -4,6 +4,10 @@ class_name Ball
 signal big_attack_hit
 signal small_attack_hit
 @onready var invince_timer: Timer = $InvinceTimer
+@onready var small_hit: AudioStreamPlayer = $SmallHit
+@onready var big_hit: AudioStreamPlayer = $BigHit
+
+
 var gravity = 700
 
 var juggle_grav = 500
@@ -35,10 +39,15 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			big_attack_hit.emit()
 			SignalBus.small_pause.emit(0.1)
 			SignalBus.noise_shake.emit(32)
+			big_hit.play()
+			small_hit.play()
+			
 			velocity = area.direction * 330
 		else:
 			small_attack_hit.emit()
 			SignalBus.small_pause.emit(0.05)
 			SignalBus.noise_shake.emit(8)
+			small_hit.play()
+			
 			velocity = area.direction * 280
 			
