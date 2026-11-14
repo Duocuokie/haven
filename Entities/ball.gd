@@ -9,11 +9,12 @@ signal small_attack_hit
 @onready var big_hit_ball_particle : GPUParticles2D = $BigHitBallParticle
 @onready var small_hit_ball_particle : GPUParticles2D = $SmallHitBallParticle
 const HIT = preload("uid://bgmg7qe01dlaf")
+@onready var ray: RayCast2D = $RayCast2D
 
-var SPEED = 100.0
+var SPEED = 150.0
 const JUMP_VELOCITY = -150.0
-var ACCEL = 2000.0 
-const  FRICT = 1500.0
+var ACCEL = 800.0 
+const  FRICT = 800.0
 
 
 var jumped := false
@@ -34,17 +35,12 @@ var air_res = 35
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
-	var collision : KinematicCollision2D = move_and_collide(velocity * delta)
 	if is_on_floor():
 		#velocity.x = move_toward(velocity.x, 0.0, 1000 * delta)
 		pass
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, air_res * delta)
-	if collision:
-		var bounce_velocity : Vector2 = 0.5* (velocity.bounce(collision.get_normal()))
-		velocity = bounce_velocity
-	else:
-		move_and_slide()
+	
 	##if is_on_floor():
 		##velocity.x += Input.get_axis("otherleft", "otherright") * 500
 		##if Input.is_action_just_pressed("otherjump"):

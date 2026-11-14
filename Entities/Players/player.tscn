@@ -178,6 +178,7 @@ state = NodePath("PlayerMoveState")
 [node name="PlayerMoveState" parent="StateMachine" unique_id=2088656269 node_paths=PackedStringArray("actor", "coyoteTimer", "sprite") instance=ExtResource("4_6adbs")]
 actor = NodePath("../..")
 coyoteTimer = NodePath("../../Coyote")
+can_jump = false
 sprite = NodePath("../../Sprite2D")
 
 [node name="Coyote" type="Timer" parent="." unique_id=1043628659]
