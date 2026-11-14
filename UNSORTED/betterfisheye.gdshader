@@ -2,17 +2,17 @@ shader_type canvas_item;
 
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 uniform vec2 effect_coord;
-uniform float radius : hint_range(0.0, 120.0, 0.1);
-uniform float intensity : hint_range(-2.5, 2.5, 0.1);
+uniform float radius : hint_range(0.0, 640.0, 0.1);
+uniform float intensity : hint_range(-10.0, 10.0, 0.1);
 
 //https://godotshaders.com/shader/fisheye-anti-fisheye-camera-effect/
-// 95% that thing above 
+// 95% that thing above (i only added making it moveable and radius)
 void fragment(){
 	// resolution of screen
 	vec2 iResolution = 1.0 / SCREEN_PIXEL_SIZE;
 	vec2 fragCoord = FRAGCOORD.xy;
 	
-	vec2 p = fragCoord.xy / iResolution.x;
+	vec2 p = fragCoord/iResolution.x;
 	
 	// screen proportions (ratio)
 	float prop = iResolution.x / iResolution.y;
@@ -39,11 +39,11 @@ void fragment(){
 	
 	vec2 uv;
 	if (intensity > 0.0)
-		uv = mix(p, effect_uv + normalize(d) * tan(dist * intensity) * bind / tan( bind * intensity), max(radius - dist, 0.0));
+		uv = mix(p, effect_uv + normalize(d) * tan(dist * intensity) * bind / tan( bind * intensity), clamp(radius/iResolution.x - dist, 0.0, 1.0));
 	//antifisheye
 	else if (intensity < 0.0)
-		uv = mix(p, effect_uv + normalize(d) * atan(dist * -intensity * 10.0) * bind / atan(-intensity * bind * 10.0), max(radius - dist, 0.0));
-	//no effect for power = 1.0
+		uv = mix(p, effect_uv + normalize(d) * atan(dist * -intensity * 10.0) * bind / atan(-intensity * bind * 10.0), clamp(radius/iResolution.x - dist, 0.0, 1.0));
+	//no effect for 0.0 intenisty
 	else
 		uv = p;
 	uv.y *= prop;

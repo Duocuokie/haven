@@ -4,6 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://d0wmlywcp88o5" path="res://Entities/Players/player.tscn" id="2_lq8qy"]
 [ext_resource type="PackedScene" uid="uid://cpoj1wnxejkjq" path="res://Entities/ball.tscn" id="3_p6ew4"]
 [ext_resource type="PackedScene" uid="uid://dqv4y2m2t7ws7" path="res://string_line.tscn" id="4_lq8qy"]
+[ext_resource type="Shader" uid="uid://hcfegbo3b7a3" path="res://UNSORTED/betterfisheye.gdshader" id="5_p6ew4"]
+[ext_resource type="Script" uid="uid://bah3sfckakvnr" path="res://Entities/Players/distort_rect.gd" id="6_ravdq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ravdq"]
+shader = ExtResource("5_p6ew4")
+shader_parameter/effect_coord = Vector2(0, 0)
+shader_parameter/radius = 0.0
+shader_parameter/intensity = 0.0
 
 [node name="PaddleBall" type="Node2D" unique_id=1587710769]
 script = ExtResource("1_holci")
@@ -21,3 +29,11 @@ width = 2.0
 Node_One = NodePath("../Player")
 Node_Two = NodePath("../Ball")
 Length = 70
+
+[node name="Shaders" type="CanvasLayer" parent="." unique_id=23555155]
+
+[node name="Distortion" type="ColorRect" parent="Shaders" unique_id=1850026194]
+material = SubResource("ShaderMaterial_ravdq")
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_ravdq")
