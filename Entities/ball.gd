@@ -6,6 +6,7 @@ signal small_attack_hit
 @onready var invince_timer: Timer = $InvinceTimer
 @onready var small_hit: AudioStreamPlayer = $SmallHit
 @onready var big_hit: AudioStreamPlayer = $BigHit
+@onready var hit_particle : GPUParticles2D = $HitBallParticle
 
 
 var gravity = 700
@@ -43,6 +44,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			small_hit.play()
 			
 			velocity = area.direction * 330
+			hit_particle.emitting = true
+			
 		else:
 			small_attack_hit.emit()
 			SignalBus.small_pause.emit(0.05)
