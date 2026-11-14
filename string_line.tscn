@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dqv4y2m2t7ws7"]
+
+[ext_resource type="Script" uid="uid://bb8r8h0mshke7" path="res://UNSORTED/StringLine.gd" id="1_tyog0"]
+[ext_resource type="Texture2D" uid="uid://b6t47lf32p80a" path="res://icon.svg" id="2_r32wt"]
+
+[node name="StringLine" type="Line2D" unique_id=1241934474 node_paths=PackedStringArray("Node_One", "Node_Two")]
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+script = ExtResource("1_tyog0")
+Node_One = NodePath("Sprite2D")
+Node_Two = NodePath("Sprite2D2")
+Length = 200
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=888212360]
+position = Vector2(72, 96)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_r32wt")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1289011112]
+position = Vector2(200, 176)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_r32wt")
