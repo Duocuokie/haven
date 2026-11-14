@@ -3,14 +3,17 @@ class_name Ball
 
 signal big_attack_hit
 signal small_attack_hit
+signal grounded
+
 @onready var invince_timer: Timer = $InvinceTimer
 @onready var small_hit: AudioStreamPlayer = $SmallHit
 @onready var big_hit: AudioStreamPlayer = $BigHit
 @onready var big_hit_ball_particle : GPUParticles2D = $BigHitBallParticle
 @onready var small_hit_ball_particle : GPUParticles2D = $SmallHitBallParticle
-const HIT = preload("uid://bgmg7qe01dlaf")
 @onready var ray: RayCast2D = $RayCast2D
+@onready var ground_timer: Timer = $GroundTimer
 
+const HIT = preload("uid://bgmg7qe01dlaf")
 var SPEED = 150.0
 const JUMP_VELOCITY = -150.0
 var ACCEL = 800.0 
@@ -33,12 +36,18 @@ var throw_grav = 750
 var friction = 1000
 var air_res = 35
 
+var has_been_grounded := true
+
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	if is_on_floor():
 		#velocity.x = move_toward(velocity.x, 0.0, 1000 * delta)
+		if ground_timer.is_stopped():
+			ground_timer.start()
 		pass
 	else:
+		has_been_grounded = false
+		ground_timer.stop()
 		velocity.x = move_toward(velocity.x, 0.0, air_res * delta)
 	
 	##if is_on_floor():
@@ -51,7 +60,11 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if !invince_timer.is_stopped(): return
 	invince_timer.start()
+	var direction : Vector2
 	if area is PlayerAttack:
+		if area.global_position.direction_to(global_position).dot(Vector2.UP) < 0.1 and has_been_grounded:
+			direction = area.global_position.direction_to(global_position)
+		else: direction = area.direction
 		if area.big_attack:
 			big_attack_hit.emit()
 			SignalBus.small_pause.emit(0.1)
@@ -71,7 +84,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			small_hit_ball_particle.emitting = true
 			small_hit_ball_particle.process_material.set_meta("direction", area.direction)
 			
-			velocity = area.direction * 275
+			velocity = direction * 275
 			
 		var h : Node2D = HIT.instantiate()
 		h.global_position = global_position
@@ -80,3 +93,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_grounded_timer_timeout() -> void:
 	pass # Replace with function body.
+
+
+func _on_ground_timer_timeout() -> void:
+	has_been_grounded = true
+	grounded.emit()
+
+
+func _on_coyote_timer_timeout() -> void:
+	coyote = false

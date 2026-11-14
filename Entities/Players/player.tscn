@@ -8,7 +8,46 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_il6x7"]
 radius = 9.0
-height = 24.0
+height = 22.0
+
+[sub_resource type="Animation" id="Animation_qwtga"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2j33m"]
+resource_name = "base"
+length = 2.0000083929382266
+loop_mode = 1
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.083333336, 0.16666667, 0.25, 0.33333334, 0.4166667, 0.73958576, 0.82737833, 1.5833334, 1.6666667, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 0, 1, 0, 2, 4, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_toava"]
+_data = {
+&"RESET": SubResource("Animation_qwtga"),
+&"base": SubResource("Animation_2j33m")
+}
 
 [sub_resource type="Animation" id="Animation_6adbs"]
 length = 0.001
@@ -164,13 +203,16 @@ script = ExtResource("1_xjlfs")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1282807110]
 texture = ExtResource("2_vb8cd")
+hframes = 5
 region_enabled = true
-region_rect = Rect2(0, 112, 32, 32)
+region_rect = Rect2(0, 192, 160, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2008796129]
 shape = SubResource("CapsuleShape2D_il6x7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=992251800]
+libraries/ = SubResource("AnimationLibrary_toava")
+autoplay = &"base"
 
 [node name="StateMachine" parent="." unique_id=1426128686 node_paths=PackedStringArray("state") instance=ExtResource("3_p4qpu")]
 state = NodePath("PlayerMoveState")

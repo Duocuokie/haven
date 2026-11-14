@@ -17,6 +17,8 @@ func _ready() -> void:
 		state = paddle_state.JUGGLE
 		player.charge = clamp(player.charge + 1, 0, 3)
 		max_string_paddle = 65 + player.charge * 5)
+	ball.grounded.connect(func():
+		player.charge = 0)
 	
 
 func _physics_process(delta: float) -> void:
@@ -33,7 +35,7 @@ func _physics_process(delta: float) -> void:
 			player.velocity += Vector2(applied_vel.x, applied_vel.y *0.8)
 			var ball_applied_vel := ball.global_position.direction_to(player.global_position) * (7* dist - 4 * ball.velocity.length()) * delta
 			ball.velocity += Vector2(ball_applied_vel.x, ball_applied_vel.y *0.8)
-			player.sprite.rotation = player.global_position.direction_to(ball.global_position).angle()
+			player.sprite.rotation = lerp(player.sprite.rotation, player.global_position.direction_to(ball.global_position).angle(), 5 * delta)
 	elif state == paddle_state.JUGGLE:
 		ball.gravity = ball.juggle_grav
 		if dist > max_string_paddle:

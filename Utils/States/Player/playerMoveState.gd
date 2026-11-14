@@ -17,6 +17,9 @@ var buffer := false
 var hold_interupt = false
 
 var accel : int
+var big_bounce := false
+var was_in_air := false
+var prev_pos
 
 func _ready():
 	set_physics_process(false)
@@ -34,12 +37,20 @@ func _physics_process(delta):
 	#if actor is Ball:
 		#ball = actor
 		#print(ball.ray.is_colliding())
+	print(abs(actor.velocity.x))
 	var balls : bool= not (actor is Ball and not (actor.is_on_floor() or actor.ray.is_colliding()))
+	if actor is Ball:
+		if Input.is_action_pressed("otherjump"):
+			if was_in_air and actor.is_on_floor() and abs(actor.global_position.x - prev_pos.x) < 1:
+				actor.velocity.x = 0
+				actor.velocity.y = actor.JUMP_VELOCITY * 2
+				big_bounce = true
 	if not actor.is_on_floor():
 		if actor.wasOnFloor && !actor.jumped:
 			actor.coyote = true
 			coyoteTimer.start()
 		actor.wasOnFloor = false
+		was_in_air = true
 		actor.jumped = false
 		if actor.velocity.y < 0:
 			actor.gravity = 825
@@ -50,25 +61,27 @@ func _physics_process(delta):
 		if actor is not Ball:
 			actor.velocity.y += actor.gravity * delta
 	else:
-
+		if !was_in_air: big_bounce = false
+		was_in_air = false
 		actor.wasOnFloor = true
 		accel = actor.ACCEL * 1.1
 	if balls:
 		direction = Input.get_axis(left, right)
+	if big_bounce:
+		direction = 0
 	if direction != 0:
-		if abs(actor.velocity.x) < actor.SPEED * 1.7 || direction != sign(actor.velocity.x):
+		if abs(actor.velocity.x) < actor.SPEED * 1.7 || direction != sign(actor.velocity.x) and not big_bounce:
 			actor.velocity.x = move_toward(actor.velocity.x, (direction * actor.SPEED), accel * delta )
 			last_dir = direction
-			print("ne;pw")
-		else:
+		elif not big_bounce:
 			actor.velocity.x = move_toward(actor.velocity.x, (direction * actor.SPEED), accel/10 * delta )
 			last_dir = direction
 	else:
-		if actor.is_on_floor():
+		if actor.is_on_floor() :
 			actor.velocity.x = move_toward(actor.velocity.x, 0, actor.FRICT * delta)
 
 	#camera.position.x = move_toward(camera.position.x, 96 * direction, 128 * delta)
-			
+	
 	if (Input.is_action_just_pressed(jump) || buffer) and can_jump:
 		if actor.is_on_floor() || actor.coyote:
 			actor.velocity.y = actor.JUMP_VELOCITY
@@ -78,16 +91,22 @@ func _physics_process(delta):
 				bufferTimer.start()
 				buffer = true
 	else:
-		if Input.is_action_just_released(jump) && actor.velocity.y < 0:
+		if Input.is_action_just_released(jump) && actor.velocity.y < 0 and !big_bounce:
 			actor.velocity.y = actor.velocity.y / 2
 			
+	prev_pos = actor.global_position
 	
-	var collision : KinematicCollision2D = actor.move_and_collide(actor.velocity * delta)
-	if collision and bounce:
-		var bounce_velocity : Vector2 = 0.5* (actor.velocity.bounce(collision.get_normal()))
-		actor.velocity = bounce_velocity
-	else:
+	if big_bounce and (actor.is_on_floor() or actor.wasOnFloor):
+		actor.velocity.x = 0
 		actor.move_and_slide()
+	else:
+		var collision : KinematicCollision2D = actor.move_and_collide(actor.velocity * delta)
+		if collision and bounce:
+			var bounce_velocity : Vector2 = 0.5* (actor.velocity.bounce(collision.get_normal()))
+			actor.velocity = bounce_velocity
+		else:
+			actor.move_and_slide()
+		
 
 
 func _on_buffer_timer_timeout() -> void:

@@ -93,7 +93,13 @@ one_shot = true
 position = Vector2(0, 7)
 target_position = Vector2(0, 2)
 
+[node name="GroundTimer" type="Timer" parent="." unique_id=2009166321]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="GroundedTimer" to="." method="_on_grounded_timer_timeout"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="timeout" from="GroundTimer" to="." method="_on_ground_timer_timeout"]
 
 [editable path="StateMachine/PlayerMoveState"]
