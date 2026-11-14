@@ -19,7 +19,10 @@ func _ready() -> void:
 		max_string_paddle = 65 + player.charge * 6)
 	ball.grounded.connect(func():
 		player.charge = 0)
-	player.charge_change.connect(func(x:int): ball.sprite.frame = x)
+	player.charge_change.connect(func(x:int): 
+		ball.sprite.frame = x
+		ball.small_hit_ball_particle.texture = ball.small_hit_textures[x]
+		ball.big_hit_ball_particle.texture = ball.small_hit_textures[x])
 	
 
 func _physics_process(delta: float) -> void:

@@ -15,6 +15,22 @@
 [ext_resource type="PackedScene" uid="uid://dded5e5ii6l1h" path="res://Utils/States/Player/PlayerMoveState.tscn" id="13_xhe7f"]
 [ext_resource type="PackedScene" uid="uid://ctr08g4aivhp2" path="res://Utils/States/nostate.tscn" id="14_xhe7f"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhe7f"]
+atlas = ExtResource("1_3auol")
+region = Rect2(0, 224, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfeb2"]
+atlas = ExtResource("1_3auol")
+region = Rect2(16, 224, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26hfa"]
+atlas = ExtResource("1_3auol")
+region = Rect2(32, 224, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoekb"]
+atlas = ExtResource("1_3auol")
+region = Rect2(48, 224, 16, 16)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4hok"]
 radius = 8.0
 
@@ -37,6 +53,7 @@ stream_2/stream = ExtResource("9_kfeb2")
 [node name="Ball" type="CharacterBody2D" unique_id=342246280]
 collision_layer = 0
 script = ExtResource("1_d86gr")
+small_hit_textures = Array[Texture]([SubResource("AtlasTexture_xhe7f"), SubResource("AtlasTexture_kfeb2"), SubResource("AtlasTexture_26hfa"), SubResource("AtlasTexture_qoekb")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=63136891]
 texture = ExtResource("1_3auol")
