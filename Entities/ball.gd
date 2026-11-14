@@ -3,12 +3,14 @@ class_name Ball
 
 signal big_attack_hit
 signal small_attack_hit
+@onready var invince_timer: Timer = $InvinceTimer
 var gravity = 700
 
-var juggle_grav
+var juggle_grav = 500
+var throw_grav = 750
 
 var friction = 1000
-var air_res = 10
+var air_res = 20
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
@@ -26,11 +28,17 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	if !invince_timer.is_stopped(): return
+	invince_timer.start()
 	if area is PlayerAttack:
 		if area.big_attack:
 			big_attack_hit.emit()
+			SignalBus.small_pause.emit(0.1)
+			SignalBus.noise_shake.emit(32)
 			velocity = area.direction * 330
 		else:
 			small_attack_hit.emit()
+			SignalBus.small_pause.emit(0.05)
+			SignalBus.noise_shake.emit(8)
 			velocity = area.direction * 280
 			

@@ -27,6 +27,8 @@ var coyote := false
 var direction = 0
 var lastDir = 1
 
+var charge = 0
+var max_charge = 3
 
 
 
@@ -36,14 +38,23 @@ var lastDir = 1
 	#global_position=Global.checkpoint
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("small_attack"):
-		attack_anim.play("attack")
-		player_attack.rotation = global_position.angle_to_point(get_global_mouse_position())
-		player_attack.direction = global_position.direction_to(get_global_mouse_position())
-	if Input.is_action_just_pressed("attack"):
-		attack_anim.play("attack2")
-		player_attack_2.rotation = global_position.angle_to_point(get_global_mouse_position())
-		player_attack_2.direction = global_position.direction_to(get_global_mouse_position())
+	if Input.is_action_pressed("attack") and charge >= max_charge:
+		Engine.time_scale = 0.75
+	else:
+		Engine.time_scale = 1.00
+		
+		
+	if Input.is_action_just_released("attack"):
+		if charge >= max_charge:
+			attack_anim.play("attack2")
+			player_attack_2.rotation = global_position.angle_to_point(get_global_mouse_position())
+			player_attack_2.direction = global_position.direction_to(get_global_mouse_position())
+			charge = 0
+		else:
+			attack_anim.play("attack")
+			player_attack.rotation = global_position.angle_to_point(get_global_mouse_position())
+			player_attack.direction = global_position.direction_to(get_global_mouse_position())
+
 #func _physics_process(delta: float) -> void:
 	#if velocity.x != 0:
 		#sprite.rotation_degrees += (velocity.length() * sign(velocity.x) * 0.04)
