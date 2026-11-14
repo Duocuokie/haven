@@ -437,6 +437,18 @@ region = Rect2(32, 320, 32, 32)
 atlas = ExtResource("3_mlekv")
 region = Rect2(84.82, 306, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_inp5d"]
+atlas = ExtResource("3_mlekv")
+region = Rect2(839, 56, 56, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvmsg"]
+atlas = ExtResource("3_mlekv")
+region = Rect2(970, -15, 56, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bel2u"]
+atlas = ExtResource("3_mlekv")
+region = Rect2(1152, 48, 112, 136)
+
 [node name="World" type="Node2D" unique_id=27136251]
 script = ExtResource("1_il6x7")
 
@@ -551,34 +563,9 @@ offset_top = 64.0
 offset_right = -112.0
 offset_bottom = 68.0
 
-[node name="Eyes" type="Node2D" parent="Level" unique_id=1722163864 node_paths=PackedStringArray("spritegroup", "target")]
+[node name="Eyes" type="Node2D" parent="Level" unique_id=1722163864 node_paths=PackedStringArray("target")]
 script = ExtResource("13_kpwrl")
-spritegroup = [NodePath("Bigeye/eye"), NodePath("Bigeye2/eye"), NodePath("Smalleye/eye"), NodePath("Smalleye2/eye"), NodePath("Smalleye3/eye"), NodePath("Smalleye4/eye")]
 target = NodePath("../PaddleBall/Ball")
-
-[node name="Bigeye" type="Node2D" parent="Level/Eyes" unique_id=1563680082]
-position = Vector2(-200, 120)
-metadata/_edit_group_ = true
-
-[node name="eye" type="Sprite2D" parent="Level/Eyes/Bigeye" unique_id=343112214]
-scale = Vector2(1.375, 1.2937502)
-texture = SubResource("AtlasTexture_l2bp3")
-
-[node name="eyeback" type="Sprite2D" parent="Level/Eyes/Bigeye" unique_id=766341122]
-scale = Vector2(1.7500001, 1.5625)
-texture = SubResource("AtlasTexture_lhq4p")
-
-[node name="Bigeye2" type="Node2D" parent="Level/Eyes" unique_id=384732613]
-position = Vector2(448, 200)
-metadata/_edit_group_ = true
-
-[node name="eye" type="Sprite2D" parent="Level/Eyes/Bigeye2" unique_id=1876990067]
-scale = Vector2(1.375, 1.2937502)
-texture = SubResource("AtlasTexture_l2bp3")
-
-[node name="eyeback" type="Sprite2D" parent="Level/Eyes/Bigeye2" unique_id=900203248]
-scale = Vector2(1.7500001, 1.5625)
-texture = SubResource("AtlasTexture_lhq4p")
 
 [node name="Smalleye" type="Node2D" parent="Level/Eyes" unique_id=435908931]
 position = Vector2(256, 144)
@@ -625,6 +612,66 @@ scale = Vector2(0.8572376, 0.8098203)
 texture = SubResource("AtlasTexture_l2bp3")
 
 [node name="eyeback" type="Sprite2D" parent="Level/Eyes/Smalleye4" unique_id=1072496417]
+scale = Vector2(0.74999994, 0.75)
+texture = SubResource("AtlasTexture_lhq4p")
+
+[node name="Smalleye5" type="Node2D" parent="Level/Eyes" unique_id=1622942770]
+position = Vector2(608, -184)
+metadata/_edit_group_ = true
+
+[node name="eye" type="Sprite2D" parent="Level/Eyes/Smalleye5" unique_id=744783955]
+scale = Vector2(0.8572376, 0.8098203)
+texture = SubResource("AtlasTexture_l2bp3")
+
+[node name="eyeback" type="Sprite2D" parent="Level/Eyes/Smalleye5" unique_id=936106421]
+scale = Vector2(0.74999994, 0.75)
+texture = SubResource("AtlasTexture_lhq4p")
+
+[node name="Eyetree" type="Node2D" parent="Level/Eyes" unique_id=1798545850]
+position = Vector2(504, 16)
+metadata/_edit_group_ = true
+
+[node name="tree" type="Sprite2D" parent="Level/Eyes/Eyetree" unique_id=1151746751]
+position = Vector2(0, 40)
+texture = SubResource("AtlasTexture_inp5d")
+
+[node name="eye" type="Sprite2D" parent="Level/Eyes/Eyetree" unique_id=530948793]
+scale = Vector2(0.8572376, 0.8098203)
+texture = SubResource("AtlasTexture_l2bp3")
+
+[node name="Eyetree2" type="Node2D" parent="Level/Eyes" unique_id=1727770105]
+position = Vector2(592, -320)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Eyes/Eyetree2" unique_id=979969119]
+texture = SubResource("AtlasTexture_nvmsg")
+
+[node name="eye" type="Sprite2D" parent="Level/Eyes/Eyetree2" unique_id=575714044]
+scale = Vector2(0.8572376, 0.8098203)
+texture = SubResource("AtlasTexture_l2bp3")
+
+[node name="EyesRock" type="Node2D" parent="Level/Eyes" unique_id=806929030]
+
+[node name="Sprite2D" type="Sprite2D" parent="Level/Eyes/EyesRock" unique_id=247561033]
+texture = SubResource("AtlasTexture_bel2u")
+
+[node name="eye" type="Sprite2D" parent="Level/Eyes/EyesRock" unique_id=213661094]
+position = Vector2(-8, -24)
+scale = Vector2(0.8572376, 0.8098203)
+texture = SubResource("AtlasTexture_l2bp3")
+
+[node name="eye2" type="Sprite2D" parent="Level/Eyes/EyesRock" unique_id=1490434001]
+position = Vector2(8, 23.999998)
+scale = Vector2(0.8572376, 0.8098203)
+texture = SubResource("AtlasTexture_l2bp3")
+
+[node name="eyeback" type="Sprite2D" parent="Level/Eyes/EyesRock" unique_id=661500165]
+position = Vector2(-8, -24)
+scale = Vector2(0.74999994, 0.75)
+texture = SubResource("AtlasTexture_lhq4p")
+
+[node name="eyeback2" type="Sprite2D" parent="Level/Eyes/EyesRock" unique_id=641110800]
+position = Vector2(8, 24)
 scale = Vector2(0.74999994, 0.75)
 texture = SubResource("AtlasTexture_lhq4p")
 
