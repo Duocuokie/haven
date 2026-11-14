@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ctr08g4aivhp2" path="res://Utils/States/nostate.tscn" id="14_xhe7f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c4hok"]
-radius = 9.0
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6obgi"]
 

@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dded5e5ii6l1h" path="res://Utils/States/Player/PlayerMoveState.tscn" id="4_6adbs"]
 [ext_resource type="PackedScene" uid="uid://hgb1tlded5v1" path="res://Entities/Players/PlayerAttack.tscn" id="5_p4qpu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c4hok"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_il6x7"]
+radius = 9.0
+height = 24.0
 
 [sub_resource type="Animation" id="Animation_6adbs"]
 length = 0.001
@@ -166,7 +168,7 @@ region_enabled = true
 region_rect = Rect2(0, 112, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2008796129]
-shape = SubResource("CircleShape2D_c4hok")
+shape = SubResource("CapsuleShape2D_il6x7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=992251800]
 
