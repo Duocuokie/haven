@@ -9,7 +9,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ravdq"]
 shader = ExtResource("5_p6ew4")
-shader_parameter/effect_coord = Vector2(0, 0)
+shader_parameter/effect_coord = Vector2(320, 180)
 shader_parameter/radius = 0.0
 shader_parameter/intensity = 0.0
 

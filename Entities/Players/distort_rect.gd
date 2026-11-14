@@ -1,18 +1,16 @@
 extends ColorRect
-
+var tween
 
 func distort(screen_position):
-	material.set_meta("radius", 20.0)
-	material.set_meta("effect_coord", screen_position)
-	material.set_meta("intensity", 10.0)
+	material.set_shader_parameter("radius", 60.0)
+	material.set_shader_parameter("effect_coord", screen_position)
+	material.set_shader_parameter("intensity", 4.5)
 	
-	var tween = create_tween()
-	tween.tween_property(material, "shader_parameter/intensity", 0.0, 1.0)
-	
+	if tween:
+		tween.kill()
+	tween = create_tween()
+	tween.tween_property(material, "shader_parameter/intensity", 0.0, 0.6)
+	print(material.get_shader_parameter("intensity"))
 
-func _ready():
-	distort(Vector2(320.0, 135.0))
-	material.set_meta("radius", 400.0)
-
-func _process(_delta)->void:
-	print(material.get_meta("intensity"))
+func _process(_delta) ->void:
+	print(material.get_shader_parameter("intensity"))
