@@ -5,6 +5,8 @@ signal big_attack_hit
 signal small_attack_hit
 signal grounded
 
+@export var small_hit_textures : Array[Texture]
+
 @onready var invince_timer: Timer = $InvinceTimer
 @onready var small_hit: AudioStreamPlayer = $SmallHit
 @onready var big_hit: AudioStreamPlayer = $BigHit
@@ -12,11 +14,12 @@ signal grounded
 @onready var small_hit_ball_particle : GPUParticles2D = $SmallHitBallParticle
 @onready var ray: RayCast2D = $RayCast2D
 @onready var ground_timer: Timer = $GroundTimer
+@onready var sprite: Sprite2D = $Sprite2D
 
 const HIT = preload("uid://bgmg7qe01dlaf")
-var SPEED = 120.0
+var SPEED = 135.0
 const JUMP_VELOCITY = -150.0
-var ACCEL = 700.0 
+var ACCEL = 500.0 
 const  FRICT = 800.0
 
 
@@ -30,7 +33,7 @@ var lastDir = 1
 
 var gravity = 700
 
-var juggle_grav = 450
+var juggle_grav = 420
 var throw_grav = 750
 
 var friction = 1000
@@ -62,12 +65,16 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	invince_timer.start()
 	var direction : Vector2
 	if area is PlayerAttack:
-		if area.global_position.direction_to(global_position).dot(Vector2.UP) < 0.1 and has_been_grounded and false:
+		print(area.global_position.direction_to(global_position))
+		print(area.global_position.direction_to(global_position).dot(Vector2.UP))
+		if area.global_position.direction_to(global_position).dot(Vector2.UP) < 0.0 and ray.is_colliding():
 			direction = area.global_position.direction_to(global_position)
 		else: 
 			
 			direction = area.direction
 		if area.big_attack:
+			Input.start_joy_vibration(0, 0.7, 0.6, 0.2)
+			
 			big_attack_hit.emit()
 			SignalBus.small_pause.emit(0.1)
 			SignalBus.noise_shake.emit(32)
@@ -79,6 +86,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			big_hit_ball_particle.emitting = true
 			
 		else:
+			Input.start_joy_vibration(0, 0.5, 0.3, 0.1)
 			small_attack_hit.emit()
 			SignalBus.small_pause.emit(0.05)
 			SignalBus.noise_shake.emit(8)

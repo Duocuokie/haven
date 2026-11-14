@@ -45,7 +45,7 @@ func _physics_process(delta):
 		if Input.is_action_pressed(Utils.controls[control]["jump"]):
 			if was_in_air and actor.is_on_floor() and abs(actor.global_position.x - prev_pos.x) < 1:
 				actor.velocity.x = 0
-				actor.velocity.y = actor.JUMP_VELOCITY * 1.5
+				actor.velocity.y = actor.JUMP_VELOCITY * 2
 				big_bounce = true
 	if not actor.is_on_floor():
 		if actor.wasOnFloor && !actor.jumped:

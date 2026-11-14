@@ -27,7 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_2j33m"]
 resource_name = "base"
-length = 2.0000083929382266
+length = 2.000008392938226
 loop_mode = 1
 step = 0.083333336
 tracks/0/type = "value"

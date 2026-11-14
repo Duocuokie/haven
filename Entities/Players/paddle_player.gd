@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name  Player
 
+signal charge_change(charge : int)
+
 
 #@onready var coyoteTimer: Timer = $CoyoteTimer
 #@onready var sprite: Sprite2D = $Sprite2D
@@ -14,9 +16,9 @@ class_name  Player
 @onready var sprite: Sprite2D = $Sprite2D
 
 
-var SPEED = 180.0
+var SPEED = 150.0
 const JUMP_VELOCITY = -330.0
-var ACCEL = 2000.0 
+var ACCEL = 1000.0 
 const  FRICT = 1500.0
 var gravity = 700
 
@@ -28,7 +30,11 @@ var coyote := false
 var direction = 0
 var lastDir = 1
 
-var charge = 0
+var charge = 0 :
+	set(x):
+		charge = x
+		charge_change.emit(x)
+	
 var hold_amount = 0 
 var max_charge = 3
 
