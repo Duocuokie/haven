@@ -43,7 +43,7 @@ void fragment(){
 	//antifisheye
 	else if (intensity < 0.0)
 		uv = mix(p, effect_uv + normalize(d) * atan(dist * -intensity * 10.0) * bind / atan(-intensity * bind * 10.0), clamp(radius/iResolution.x - dist, 0.0, 1.0));
-	//no effect for power = 1.0
+	//no effect for 0.0 intenisty
 	else
 		uv = p;
 	uv.y *= prop;

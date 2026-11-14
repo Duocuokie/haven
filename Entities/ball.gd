@@ -15,6 +15,7 @@ signal grounded
 @onready var ray: RayCast2D = $RayCast2D
 @onready var ground_timer: Timer = $GroundTimer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var distortion_rect: ColorRect =$"../Shaders/Distortion"
 
 const HIT = preload("uid://bgmg7qe01dlaf")
 var SPEED = 135.0
@@ -84,6 +85,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			velocity = area.direction * 330
 			velocity.x *= 0.85
 			big_hit_ball_particle.emitting = true
+			distortion_rect.distort(get_global_transform_with_canvas())
 			
 		else:
 			Input.start_joy_vibration(0, 0.5, 0.3, 0.1)
