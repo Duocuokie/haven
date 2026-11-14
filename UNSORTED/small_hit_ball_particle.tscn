@@ -23,5 +23,7 @@ scale_curve = SubResource("CurveTexture_dtbvo")
 color = Color(1, 0.22352941, 0, 1)
 
 [node name="SmallHitBallParticle" type="GPUParticles2D" unique_id=1574565320]
+emitting = false
+one_shot = true
 explosiveness = 0.89
 process_material = SubResource("ParticleProcessMaterial_rj5iy")
