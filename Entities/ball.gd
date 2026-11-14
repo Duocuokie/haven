@@ -79,7 +79,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			big_attack_hit.emit()
 			SignalBus.small_pause.emit(0.1)
 			SignalBus.noise_shake.emit(32)
-			distortion_rect.distort(get_global_transform_with_canvas()[2])
+			distortion_rect.distort(get_global_transform_with_canvas()[2] + area.direction * 8.0)
 			big_hit.play()
 			small_hit.play()
 			

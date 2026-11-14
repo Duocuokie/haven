@@ -2,9 +2,9 @@ extends ColorRect
 var tween
 
 func distort(screen_position):
-	material.set_shader_parameter("radius", 60.0)
+	material.set_shader_parameter("radius", 70.0)
 	material.set_shader_parameter("effect_coord", screen_position)
-	material.set_shader_parameter("intensity", 4.5)
+	material.set_shader_parameter("intensity", 4.8)
 	
 	if tween:
 		tween.kill()
