@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://gpb6yfldqpxj"]
+
+[ext_resource type="Script" uid="uid://c1bu65r1c0nac" path="res://Utils/components/deleteOnCollisionComponent.gd" id="1_p5qhy"]
+
+[node name="CmpDeleteOnCollision" type="Node2D" unique_id=1472696256]
+script = ExtResource("1_p5qhy")

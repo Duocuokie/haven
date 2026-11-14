@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://coopaqj6le5v0"]
+
+[ext_resource type="Script" uid="uid://dg2mnbpelt2v" path="res://Utils/components/deleteOnTimeoutComponent.gd" id="1_33b0s"]
+
+[node name="DeleteOnTimeoutComponent" type="Timer"]
+one_shot = true
+script = ExtResource("1_33b0s")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

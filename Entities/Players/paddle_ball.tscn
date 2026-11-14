@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://genitrger56t"]
+
+[ext_resource type="Script" uid="uid://bavpktnnq8uk7" path="res://Entities/Players/paddle_ball.gd" id="1_holci"]
+[ext_resource type="PackedScene" uid="uid://d0wmlywcp88o5" path="res://Entities/Players/player.tscn" id="2_lq8qy"]
+[ext_resource type="PackedScene" uid="uid://cpoj1wnxejkjq" path="res://Entities/ball.tscn" id="3_p6ew4"]
+
+[node name="PaddleBall" type="Node2D" unique_id=1587710769]
+script = ExtResource("1_holci")
+
+[node name="Player" parent="." unique_id=551209235 instance=ExtResource("2_lq8qy")]
+
+[node name="Ball" parent="." unique_id=342246280 instance=ExtResource("3_p6ew4")]
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1045267874]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 2.0

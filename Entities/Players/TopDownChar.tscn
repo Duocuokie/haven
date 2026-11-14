@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ouhkooccl14x"]
+
+[ext_resource type="Texture2D" uid="uid://drtqaavux5puu" path="res://Assets/Texture/spritesheet.png" id="1_417ve"]
+[ext_resource type="Script" uid="uid://c82h2a7d7fuh4" path="res://Entities/Players/top_down_char.gd" id="1_i6rrb"]
+[ext_resource type="PackedScene" uid="uid://dh0lesngsaddt" path="res://Utils/Components/hurtbox.tscn" id="2_t0cun"]
+[ext_resource type="PackedScene" uid="uid://baeqwhjus5ay3" path="res://Utils/States/stateMachine.tscn" id="3_i6rrb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c66ow"]
+
+[node name="TopDownChar" type="CharacterBody2D" unique_id=54600863]
+script = ExtResource("1_i6rrb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1736369903]
+texture = ExtResource("1_417ve")
+region_enabled = true
+region_rect = Rect2(0, 112, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1314601042]
+shape = SubResource("CircleShape2D_c66ow")
+
+[node name="Hurtbox" parent="." unique_id=2121442295 instance=ExtResource("2_t0cun")]
+script = null
+
+[node name="StateMachine" parent="." unique_id=553915789 instance=ExtResource("3_i6rrb")]

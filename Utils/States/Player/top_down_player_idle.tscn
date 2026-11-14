@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://tdm31mkf1pf8"]
+
+[ext_resource type="Script" uid="uid://60imqteqh2op" path="res://Utils/States/Player/top_down_player_idle.gd" id="1_rvrx6"]
+
+[node name="TopDownPlayerIdle" type="Node" unique_id=973861775]
+script = ExtResource("1_rvrx6")

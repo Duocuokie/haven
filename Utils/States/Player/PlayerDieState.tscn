@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cr1rus5sjbwix"]
+
+[ext_resource type="Script" uid="uid://dq2kgvoilyjxk" path="res://coolstuff/States/playerDieState.gd" id="1_jqcg7"]
+
+[node name="PlayerDieState" type="Node"]
+script = ExtResource("1_jqcg7")
+metadata/_custom_type_script = "uid://lqsfo5tctms7"

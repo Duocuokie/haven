@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b56adi3sokqol"]
+
+[ext_resource type="Script" uid="uid://cuote28ug16mb" path="res://Utils/Components/cmp_shake.gd" id="1_bf8it"]
+
+[node name="CmpShake" type="Node2D" unique_id=1585367180]
+script = ExtResource("1_bf8it")

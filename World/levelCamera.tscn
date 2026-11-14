@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dc821yk21mqp6"]
+
+[ext_resource type="Script" uid="uid://cusolsuufb2f4" path="res://World/levelCamera.gd" id="1_4e1mg"]
+
+[node name="LevelCamera" type="Camera2D" unique_id=714179996]
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("1_4e1mg")

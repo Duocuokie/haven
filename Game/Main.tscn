@@ -21,11 +21,10 @@ shader = ExtResource("3_rchnd")
 shader_parameter/dissolve_value = 0.0
 shader_parameter/mix_ratio = 0.0
 
-[node name="Main" type="Node2D" unique_id=33522341 node_paths=PackedStringArray("current_scene")]
+[node name="Main" type="Node2D" unique_id=33522341]
 process_mode = 3
 texture_filter = 1
 script = ExtResource("1_haytw")
-current_scene = NodePath("")
 
 [node name="CursorLayer" type="CanvasLayer" parent="." unique_id=1156244149]
 layer = 10
@@ -44,8 +43,7 @@ texture = SubResource("GradientTexture2D_f5eub")
 material = SubResource("ShaderMaterial_eg2md")
 position = Vector2(240, 135)
 
-[node name="SceneLoader" type="Node2D" parent="." unique_id=2091706238 node_paths=PackedStringArray("transition", "current_scene", "main")]
+[node name="SceneLoader" type="Node2D" parent="." unique_id=2091706238 node_paths=PackedStringArray("transition", "main")]
 script = ExtResource("8_3xx61")
 transition = NodePath("../Transition")
-current_scene = NodePath("")
 main = NodePath("..")

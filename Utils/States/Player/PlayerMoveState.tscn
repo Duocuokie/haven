@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dded5e5ii6l1h"]
+
+[ext_resource type="Script" uid="uid://xha15uykeuw7" path="res://Utils/States/Player/playerMoveState.gd" id="1_4wtio"]
+
+[node name="PlayerMoveState" type="Node" unique_id=2088656269]
+script = ExtResource("1_4wtio")
+
+[node name="BufferTimer" type="Timer" parent="." unique_id=105802671]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="BufferTimer" to="." method="_on_buffer_timer_timeout"]

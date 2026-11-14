@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cpoj1wnxejkjq"]
+
+[ext_resource type="Texture2D" uid="uid://drtqaavux5puu" path="res://Assets/Texture/spritesheet.png" id="1_3auol"]
+[ext_resource type="Script" uid="uid://dcrmtj1vw8dc8" path="res://Entities/ball.gd" id="1_d86gr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c4hok"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6obgi"]
+
+[node name="Ball" type="CharacterBody2D" unique_id=342246280]
+collision_layer = 0
+script = ExtResource("1_d86gr")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=63136891]
+texture = ExtResource("1_3auol")
+region_enabled = true
+region_rect = Rect2(32, 112, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1513096500]
+shape = SubResource("CircleShape2D_c4hok")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=227638058]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2072354524]
+shape = SubResource("CircleShape2D_6obgi")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

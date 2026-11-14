@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dh0lesngsaddt"]
+
+[ext_resource type="Script" uid="uid://bdj8s6rovnpd4" path="res://Utils/Components/hurtbox.gd" id="1_38vbm"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_18brc"]
+playback_mode = 1
+random_pitch = 1.0594631
+random_volume_offset_db = 1.0
+streams_count = 4
+
+[node name="Hurtbox" type="Area2D" unique_id=2121442295]
+collision_layer = 16
+collision_mask = 32
+script = ExtResource("1_38vbm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=696325344]
+debug_color = Color(0.976471, 0.682353, 0.572549, 0.419608)
+
+[node name="Timer" type="Timer" parent="." unique_id=1788829059]
+one_shot = true
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="." unique_id=1055385182]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_18brc")
+volume_db = 3.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cirm7gvwrw4wt"]
+
+[ext_resource type="Script" uid="uid://cywnnljbuk806" path="res://Entities/Projectiles/projectile.gd" id="1_n6qqc"]
+[ext_resource type="PackedScene" uid="uid://bm53fhv67jkbr" path="res://Utils/components/EntityComp/hitbox.tscn" id="2_su5rk"]
+[ext_resource type="PackedScene" uid="uid://d0bca3w73h5ka" path="res://Utils/components/offScreenDeleteComponent.tscn" id="3_6yi4c"]
+
+[node name="projectile" type="Node2D"]
+script = ExtResource("1_n6qqc")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_su5rk")]
+collision_layer = 0
+collision_mask = 0
+
+[node name="offScreenDeleteComponent" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("3_6yi4c")]
+actor = NodePath("..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[editable path="Hitbox"]
