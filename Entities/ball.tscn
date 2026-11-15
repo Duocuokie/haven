@@ -52,7 +52,7 @@ stream_1/stream = ExtResource("8_xhe7f")
 stream_2/stream = ExtResource("9_kfeb2")
 
 [node name="Ball" type="CharacterBody2D" unique_id=342246280]
-collision_layer = 0
+collision_layer = 128
 script = ExtResource("1_d86gr")
 small_hit_textures = Array[Texture]([SubResource("AtlasTexture_xhe7f"), SubResource("AtlasTexture_kfeb2"), SubResource("AtlasTexture_26hfa"), SubResource("AtlasTexture_qoekb")])
 

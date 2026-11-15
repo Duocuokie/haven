@@ -18,6 +18,7 @@
 [ext_resource type="Shader" uid="uid://ck7dn1gxjm7jv" path="res://UNSORTED/vignette.gdshader" id="15_aui5h"]
 [ext_resource type="FontFile" uid="uid://d5e1o6i7eort" path="res://Assets/Texture/DigitalDisco.ttf" id="15_ldwv2"]
 [ext_resource type="PackedScene" uid="uid://ck2yrrml6ckwl" path="res://UNSORTED/wind.tscn" id="16_17qe0"]
+[ext_resource type="Script" uid="uid://lnntdll70eus" path="res://World/upgrade.gd" id="19_034jk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_il6x7"]
 texture = ExtResource("4_034jk")
@@ -2331,6 +2332,9 @@ shader_parameter/vignette_color = Color(0.9137255, 0.6784314, 0.6039216, 1)
 shader_parameter/effect_distance = 1.61999996378976
 shader_parameter/strength = 1.80000002682216
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4hok"]
+size = Vector2(106, 786)
+
 [node name="World" type="Node2D" unique_id=27136251]
 script = ExtResource("1_cner5")
 
@@ -2634,6 +2638,7 @@ texture = SubResource("AtlasTexture_l2bp3")
 position = Vector2(-2816, 480)
 
 [node name="Label" type="Label" parent="Level/Tutorial" unique_id=1526787008]
+z_index = 555
 offset_left = -8.0
 offset_top = 128.0
 offset_right = 122.0
@@ -2676,6 +2681,16 @@ offset_bottom = -501.0
 theme_override_fonts/font = ExtResource("15_ldwv2")
 text = "The further up hit
 The further the launch"
+autowrap_mode = 2
+
+[node name="Label6" type="Label" parent="Level/Tutorial" unique_id=726899157]
+offset_left = 2736.0
+offset_top = -360.0
+offset_right = 3040.0
+offset_bottom = -325.0
+theme_override_fonts/font = ExtResource("15_ldwv2")
+text = "For the ball, press jump right before
+you hit the ground for a high jump"
 autowrap_mode = 2
 
 [node name="SmallPause" type="Timer" parent="." unique_id=997796193]
@@ -2721,6 +2736,17 @@ position = Vector2(-2400, 500)
 [node name="Wind8" parent="." unique_id=1072392040 instance=ExtResource("16_17qe0")]
 position = Vector2(-3000, 600)
 
+[node name="Area2D" type="Area2D" parent="." unique_id=704107949]
+collision_layer = 0
+collision_mask = 128
+script = ExtResource("19_034jk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1697906386]
+position = Vector2(-200, -272)
+shape = SubResource("RectangleShape2D_c4hok")
+
 [connection signal="timeout" from="SmallPause" to="." method="unpause"]
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 
 [editable path="Level/PaddleBall"]

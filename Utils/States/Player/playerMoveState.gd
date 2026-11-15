@@ -47,10 +47,9 @@ func _physics_process(delta):
 		#ball = actor
 		#print(ball.ray.is_colliding())
 	var balls : bool= not (actor is Ball and not (actor.is_on_floor() or actor.ray.is_colliding()))
-	if actor is Ball:
+	if actor is Ball and actor.bounce_unlocked:
 		if buffer:
 			if was_in_air and actor.is_on_floor() and abs(actor.global_position.x - prev_pos.x) < 1:
-				print("asdfdsaf")
 				actor.velocity.x = 0
 				actor.velocity.y = actor.JUMP_VELOCITY * 2
 				big_bounce = true
