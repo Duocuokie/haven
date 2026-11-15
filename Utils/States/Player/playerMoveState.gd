@@ -80,7 +80,7 @@ func _physics_process(delta):
 		direction = 0
 	if direction != 0:
 		if !balls:
-			accel = actor.ACCEL / 10
+			accel = actor.ACCEL / 2
 		if abs(actor.velocity.x) < actor.SPEED * 1.7 || direction != sign(actor.velocity.x) and not big_bounce:
 			actor.velocity.x = move_toward(actor.velocity.x, (direction * actor.SPEED), accel * delta )
 			last_dir = direction

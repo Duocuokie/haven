@@ -97,7 +97,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			small_hit_ball_particle.emitting = true
 			small_hit_ball_particle.process_material.set_meta("direction", area.direction)
 			
-			velocity = direction * 275
+			velocity = direction * 260
+			velocity.y -= 10
 			
 		var h : Node2D = HIT.instantiate()
 		h.global_position = global_position
