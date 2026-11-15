@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://fecmplacqkv5" path="res://Game/transition.gd" id="4_3xx61"]
 [ext_resource type="Texture2D" uid="uid://bs1vqdh8p5qtv" path="res://Assets/Texture/LOADING2.png" id="4_g5pn2"]
 [ext_resource type="Texture2D" uid="uid://bnyeku5pvhs8f" path="res://Assets/Texture/LOADING1.png" id="5_haytw"]
+[ext_resource type="PackedScene" uid="uid://bbc7od2rs7t35" path="res://UNSORTED/menu.tscn" id="7_haytw"]
 [ext_resource type="Script" uid="uid://5qs640r6tn2g" path="res://Game/scene_loader.gd" id="8_3xx61"]
 
 [sub_resource type="Gradient" id="Gradient_g5pn2"]
@@ -70,6 +71,8 @@ script = ExtResource("1_haytw")
 
 [node name="CursorLayer" type="CanvasLayer" parent="." unique_id=1156244149]
 layer = 10
+
+[node name="Menu" parent="CursorLayer" unique_id=599075965 instance=ExtResource("7_haytw")]
 
 [node name="Transition" type="CanvasLayer" parent="." unique_id=1503547896]
 layer = 20
