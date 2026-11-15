@@ -3,7 +3,7 @@ extends Node2D
 @onready var scene_loader: Node2D = $SceneLoader
 
 @export var current_scene : Node
-const WORLD = "uid://dk0hrdk1b4hwl"
+const WORLD = "res://World/Worldbackackup.tscn"
 
 
 func _ready() -> void:

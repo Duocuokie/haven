@@ -1,6 +1,9 @@
 extends Node
 
-var paddle_controller = 1
+var paddle_controller = 1 : 
+	set(x):
+		paddle_controller = x
+		SignalBus.control_changed.emit()
 var controls = [
 	{
 		"left" : "left",

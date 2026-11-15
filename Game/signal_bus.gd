@@ -9,3 +9,5 @@ signal world_reparent_entity(entity: Node2D)
 signal noise_shake(amount : float)
 signal small_pause(time : float)
 signal transition_scene(path : String)
+
+signal control_changed

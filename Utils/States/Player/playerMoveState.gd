@@ -25,6 +25,10 @@ var prev_pos
 var control = Utils.paddle_controller
 
 func _ready():
+	SignalBus.control_changed.connect(func():
+		control = Utils.paddle_controller
+		if actor is Ball:
+			control = (control +1) % 2)
 	if actor is Ball:
 		control = (control +1) % 2
 	set_physics_process(false)
