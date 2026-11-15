@@ -48,7 +48,7 @@ func _physics_process(delta):
 		#print(ball.ray.is_colliding())
 	var balls : bool= not (actor is Ball and not (actor.is_on_floor() or actor.ray.is_colliding()))
 	if actor is Ball:
-		if Input.is_action_pressed(Utils.controls[control]["jump"]):
+		if buffer:
 			if was_in_air and actor.is_on_floor() and abs(actor.global_position.x - prev_pos.x) < 1:
 				actor.velocity.x = 0
 				actor.velocity.y = actor.JUMP_VELOCITY * 2
