@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ck2yrrml6ckwl"]
+
+[ext_resource type="Script" uid="uid://br4gqcvh125td" path="res://UNSORTED/wind.gd" id="1_obtvp"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_inp5d"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 400, 1)
+angle_min = 1.0728835e-05
+angle_max = 1.0728835e-05
+gravity = Vector3(-900, 20, 0)
+tangential_accel_min = -33.850002
+tangential_accel_max = 30.769997
+scale_min = 2.0
+scale_max = 4.0
+turbulence_enabled = true
+
+[node name="Wind" type="GPUParticles2D" unique_id=1996353546]
+amount = 150
+lifetime = 30.0
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_inp5d")
+script = ExtResource("1_obtvp")

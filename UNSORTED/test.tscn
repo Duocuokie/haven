@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://c5tbeilw7gla"]
 
-[ext_resource type="Shader" uid="uid://hcfegbo3b7a3" path="res://UNSORTED/betterfisheye.gdshader" id="1_37kl0"]
+[ext_resource type="Shader" uid="uid://hcfegbo3b7a3" path="res://UNSORTED/betterfisheye.gdshader" id="1_300gd"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_c0d7q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_37kl0"]
-shader = ExtResource("1_37kl0")
+shader = ExtResource("1_300gd")
 shader_parameter/effect_coord = Vector2(320, 180)
 shader_parameter/radius = 386.80000576378416
 shader_parameter/intensity = 6.000000238419201
