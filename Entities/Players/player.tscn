@@ -262,11 +262,11 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c4hok"]
-radius = 13.0
+radius = 16.0
 height = 46.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6adbs"]
-radius = 16.0
+radius = 22.0
 height = 58.0
 
 [node name="Player" type="CharacterBody2D" unique_id=551209235]
@@ -305,7 +305,7 @@ libraries/ = SubResource("AnimationLibrary_qwtga")
 [node name="PlayerAttack" parent="." unique_id=613731957 instance=ExtResource("5_p4qpu")]
 
 [node name="CollisionShape2D" parent="PlayerAttack" index="0" unique_id=839403878]
-position = Vector2(6, 0)
+position = Vector2(8, 0)
 shape = SubResource("CapsuleShape2D_c4hok")
 disabled = true
 
@@ -321,7 +321,7 @@ region_rect = Rect2(128, 144, 128, 48)
 big_attack = true
 
 [node name="CollisionShape2D" parent="PlayerAttack2" index="0" unique_id=839403878]
-position = Vector2(9, 0)
+position = Vector2(16, 0)
 shape = SubResource("CapsuleShape2D_6adbs")
 disabled = true
 

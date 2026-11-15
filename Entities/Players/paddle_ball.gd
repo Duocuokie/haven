@@ -6,7 +6,7 @@ class_name PaddleBall
 @onready var ball: Ball = $Ball
 
 var max_string_length = 75
-var max_string_paddle = 65
+var max_string_paddle = 60
 var follow_ball = false
 enum paddle_state {THROW, STILL, JUGGLE}
 var state : paddle_state
@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 			#player.velocity += Vector2(applied_vel.x, applied_vel.y *0.8)
 			var ball_applied_vel := ball.global_position.direction_to(player.global_position) * (21* dist - 3 * ball.velocity.length()) * delta
 			if ball_applied_vel.y > 0:
-				ball_applied_vel.y *= 0.68
+				ball_applied_vel.y *= 0.65
 				ball_applied_vel.x *= 1.2
 			else: 
 				ball_applied_vel.y *= 1.1

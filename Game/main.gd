@@ -7,5 +7,7 @@ const WORLD = "uid://dk0hrdk1b4hwl"
 
 
 func _ready() -> void:
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 	SignalBus.transition_scene.connect(scene_loader.transition_unloaded_scene)
 	scene_loader.transition_unloaded_scene(WORLD)

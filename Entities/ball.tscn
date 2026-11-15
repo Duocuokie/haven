@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://baeqwhjus5ay3" path="res://Utils/States/stateMachine.tscn" id="12_p5jf5"]
 [ext_resource type="PackedScene" uid="uid://dded5e5ii6l1h" path="res://Utils/States/Player/PlayerMoveState.tscn" id="13_xhe7f"]
 [ext_resource type="PackedScene" uid="uid://ctr08g4aivhp2" path="res://Utils/States/nostate.tscn" id="14_xhe7f"]
+[ext_resource type="AudioStream" uid="uid://yn644kvjuya8" path="res://Assets/Audio/jump.ogg" id="15_kfeb2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xhe7f"]
 atlas = ExtResource("1_3auol")
@@ -92,13 +93,14 @@ one_shot = true
 [node name="StateMachine" parent="." unique_id=501441417 node_paths=PackedStringArray("state") instance=ExtResource("12_p5jf5")]
 state = NodePath("PlayerMoveState")
 
-[node name="PlayerMoveState" parent="StateMachine" unique_id=2088656269 node_paths=PackedStringArray("actor", "coyoteTimer", "sprite") instance=ExtResource("13_xhe7f")]
+[node name="PlayerMoveState" parent="StateMachine" unique_id=2088656269 node_paths=PackedStringArray("actor", "coyoteTimer", "sprite", "jump_audio") instance=ExtResource("13_xhe7f")]
 actor = NodePath("../..")
 coyoteTimer = NodePath("../../CoyoteTimer")
 left = "otherleft"
 right = "otherright"
 jump = "otherjump"
 sprite = NodePath("../../Sprite2D")
+jump_audio = NodePath("../../AudioStreamPlayer")
 
 [node name="nostate" parent="StateMachine" unique_id=41375804 instance=ExtResource("14_xhe7f")]
 
@@ -113,6 +115,9 @@ target_position = Vector2(0, 2)
 [node name="GroundTimer" type="Timer" parent="." unique_id=2009166321]
 wait_time = 0.5
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1885459544]
+stream = ExtResource("15_kfeb2")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="GroundedTimer" to="." method="_on_grounded_timer_timeout"]

@@ -6,6 +6,7 @@ signal small_attack_hit
 signal grounded
 
 @export var small_hit_textures : Array[Texture]
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 @onready var invince_timer: Timer = $InvinceTimer
 @onready var small_hit: AudioStreamPlayer = $SmallHit
@@ -34,7 +35,7 @@ var lastDir = 1
 
 var gravity = 700
 
-var juggle_grav = 420
+var juggle_grav = 400
 var throw_grav = 750
 
 var friction = 1000
