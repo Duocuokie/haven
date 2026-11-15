@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 			tween.tween_property(self, "position", Vector2(0.0,-360.0), 0.8)
 
 
-const WORLD = "uid://dk0hrdk1b4hwl"
+const WORLD = "uid://cjm6sbkm4ewl0"
 
 func _on_restart_pressed() -> void:
 	SignalBus.transition_scene.emit(WORLD)
