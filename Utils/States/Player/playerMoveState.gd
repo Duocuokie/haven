@@ -9,6 +9,8 @@ class_name PlayerMoveState
 @export var can_jump := true
 @export var sprite : Sprite2D
 @export var bounce := false
+@export var jump_audio : AudioStreamPlayer
+
 @onready var bufferTimer: Timer = $BufferTimer
 var direction := 0
 var last_dir := 0
@@ -67,11 +69,13 @@ func _physics_process(delta):
 		was_in_air = false
 		actor.wasOnFloor = true
 		accel = actor.ACCEL * 1.1
-	if balls:
-		direction = Input.get_axis(Utils.controls[control]["left"], Utils.controls[control]["right"])
+
+	direction = Input.get_axis(Utils.controls[control]["left"], Utils.controls[control]["right"])
 	if big_bounce:
 		direction = 0
 	if direction != 0:
+		if !balls:
+			accel = actor.ACCEL / 10
 		if abs(actor.velocity.x) < actor.SPEED * 1.7 || direction != sign(actor.velocity.x) and not big_bounce:
 			actor.velocity.x = move_toward(actor.velocity.x, (direction * actor.SPEED), accel * delta )
 			last_dir = direction
@@ -87,6 +91,8 @@ func _physics_process(delta):
 	if (Input.is_action_just_pressed(Utils.controls[control]["jump"]) || buffer) and can_jump:
 		if actor.is_on_floor() || actor.coyote:
 			actor.velocity.y = actor.JUMP_VELOCITY
+			if jump_audio:
+				jump_audio.play()
 			actor.jumped = true
 		else:
 			if !buffer:

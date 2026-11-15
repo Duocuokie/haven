@@ -6,6 +6,7 @@ signal small_attack_hit
 signal grounded
 
 @export var small_hit_textures : Array[Texture]
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 @onready var invince_timer: Timer = $InvinceTimer
 @onready var small_hit: AudioStreamPlayer = $SmallHit
@@ -34,7 +35,7 @@ var lastDir = 1
 
 var gravity = 700
 
-var juggle_grav = 420
+var juggle_grav = 400
 var throw_grav = 750
 
 var friction = 1000
@@ -66,9 +67,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	invince_timer.start()
 	var direction : Vector2
 	if area is PlayerAttack:
-		print(area.global_position.direction_to(global_position))
-		print(area.global_position.direction_to(global_position).dot(Vector2.UP))
-		if area.global_position.direction_to(global_position).dot(Vector2.UP) < 0.0 and ray.is_colliding():
+		if area.global_position.direction_to(global_position).dot(Vector2.UP) < 0.0 and has_been_grounded:
 			direction = area.global_position.direction_to(global_position)
 		else: 
 			

@@ -20,7 +20,7 @@ func calculate_points() -> void:
 		h *= -1
 		v *= -1
 	
-	if Length**2 > (h**2 + v**2):
+	if Length**2 > (h**2 + v**2) and h > 10:
 		var a = 1
 		# parametric equation idk
 		var step = 0.1

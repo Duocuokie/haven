@@ -1,5 +1,11 @@
 [gd_scene format=3 uid="uid://cnircrqdt3pnp"]
 
+[ext_resource type="Texture2D" uid="uid://drtqaavux5puu" path="res://Assets/Texture/spritesheet.png" id="1_rj5iy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4qpu"]
+atlas = ExtResource("1_rj5iy")
+region = Rect2(0, 224, 16, 16)
+
 [sub_resource type="Curve" id="Curve_dtbvo"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.738255, 0.7211896), -0.7527405, -0.7527405, 0, 0, Vector2(1, 0.12639415), 0.0, 0.0, 0, 0]
 point_count = 3
@@ -17,13 +23,13 @@ initial_velocity_max = 40.0
 gravity = Vector3(0, 490, 0)
 damping_min = 2.9570003
 damping_max = 4.57
-scale_min = 4.0
-scale_max = 4.0
+scale_min = 2.0
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_dtbvo")
-color = Color(1, 0.22352941, 0, 1)
 
 [node name="SmallHitBallParticle" type="GPUParticles2D" unique_id=1574565320]
 emitting = false
+texture = SubResource("AtlasTexture_p4qpu")
 lifetime = 0.3
 one_shot = true
 explosiveness = 0.89

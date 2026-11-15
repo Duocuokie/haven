@@ -46,16 +46,16 @@ var max_charge = 3
 	#global_position=Global.checkpoint
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed(Utils.controls[Utils.paddle_controller]["attack"]) and charge >= max_charge:
+	if (Input.is_action_pressed("attack") or Input.is_action_pressed("otherattack")) and charge >= max_charge:
 		hold_amount += delta
 		Engine.time_scale = lerp(Engine.time_scale, 0.5, 10 * delta)
 	else:
 		Engine.time_scale = 1.00
 		
 		
-	if Input.is_action_just_released(Utils.controls[Utils.paddle_controller]["attack"]):
+	if Input.is_action_just_released("attack") or Input.is_action_just_released("otherattack"):
 		var direction : Vector2
-		if Utils.paddle_controller == 0:
+		if Utils.paddle_controller == 0 or Input.is_action_just_released("attack"):
 			direction = global_position.direction_to(get_global_mouse_position())
 		else:
 			direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")

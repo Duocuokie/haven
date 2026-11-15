@@ -3,23 +3,65 @@
 [ext_resource type="Script" uid="uid://de52fc31vmse" path="res://Game/main.gd" id="1_haytw"]
 [ext_resource type="Shader" uid="uid://dn5j13y1a44ol" path="res://Utils/Shaders/dissolve.gdshader" id="3_rchnd"]
 [ext_resource type="Script" uid="uid://fecmplacqkv5" path="res://Game/transition.gd" id="4_3xx61"]
+[ext_resource type="Texture2D" uid="uid://bs1vqdh8p5qtv" path="res://Assets/Texture/LOADING2.png" id="4_g5pn2"]
+[ext_resource type="Texture2D" uid="uid://bnyeku5pvhs8f" path="res://Assets/Texture/LOADING1.png" id="5_haytw"]
 [ext_resource type="Script" uid="uid://5qs640r6tn2g" path="res://Game/scene_loader.gd" id="8_3xx61"]
+
+[sub_resource type="Gradient" id="Gradient_g5pn2"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_krex0"]
+gradient = SubResource("Gradient_g5pn2")
+fill = 1
+fill_from = Vector2(0.47, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x253o"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6o7ua"]
+noise = SubResource("FastNoiseLite_x253o")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c4hok"]
 shader = ExtResource("3_rchnd")
 shader_parameter/dissolve_value = 0.0
-shader_parameter/mix_ratio = 0.0
+shader_parameter/mix_ratio = 0.70000003325
+shader_parameter/dissolve_noise = SubResource("NoiseTexture2D_6o7ua")
+shader_parameter/dissolve_gradient = SubResource("GradientTexture2D_krex0")
 
-[sub_resource type="Gradient" id="Gradient_rl4yr"]
+[sub_resource type="Shader" id="Shader_haytw"]
+code = "shader_type canvas_item;
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_f5eub"]
-gradient = SubResource("Gradient_rl4yr")
-width = 105
+uniform float dissolve_value : hint_range(0.0, 1.0);
+uniform float mix_ratio : hint_range(0, 1.0);
+uniform sampler2D dissolve_noise;
+uniform sampler2D dissolve_gradient;
+
+void fragment() {
+	vec4 main_texture = texture(TEXTURE, UV);
+	vec4 a = texture(dissolve_noise, UV);
+	vec4 b = texture(dissolve_gradient, UV);
+	vec4 noise_texture = mix(a,b, mix_ratio);
+	main_texture.a *= floor(dissolve_value + min(1, noise_texture.x));
+	COLOR = main_texture;
+}
+"
+
+[sub_resource type="Gradient" id="Gradient_3xx61"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f77hp"]
+gradient = SubResource("Gradient_3xx61")
+fill = 1
+fill_from = Vector2(0.45, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q34ae"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3xx61"]
+noise = SubResource("FastNoiseLite_q34ae")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eg2md"]
-shader = ExtResource("3_rchnd")
+shader = SubResource("Shader_haytw")
 shader_parameter/dissolve_value = 0.0
-shader_parameter/mix_ratio = 0.0
+shader_parameter/mix_ratio = 0.870000041325
+shader_parameter/dissolve_noise = SubResource("NoiseTexture2D_3xx61")
+shader_parameter/dissolve_gradient = SubResource("GradientTexture2D_f77hp")
 
 [node name="Main" type="Node2D" unique_id=33522341]
 process_mode = 3
@@ -34,16 +76,24 @@ layer = 20
 script = ExtResource("4_3xx61")
 
 [node name="Trans2" type="Sprite2D" parent="Transition" unique_id=1636447626]
-visible = false
 material = SubResource("ShaderMaterial_c4hok")
-position = Vector2(240, 135)
-texture = SubResource("GradientTexture2D_f5eub")
+position = Vector2(320, 180)
+texture = ExtResource("4_g5pn2")
 
 [node name="Trans1" type="Sprite2D" parent="Transition" unique_id=1099727208]
 material = SubResource("ShaderMaterial_eg2md")
-position = Vector2(240, 135)
+position = Vector2(320, 180)
+texture = ExtResource("5_haytw")
 
-[node name="SceneLoader" type="Node2D" parent="." unique_id=2091706238 node_paths=PackedStringArray("transition", "main")]
+[node name="SceneLoader" type="Node2D" parent="." unique_id=2091706238 node_paths=PackedStringArray("transition", "current_scene", "main")]
 script = ExtResource("8_3xx61")
 transition = NodePath("../Transition")
+current_scene = NodePath("ColorRect")
 main = NodePath("..")
+
+[node name="ColorRect" type="ColorRect" parent="SceneLoader" unique_id=1112908920]
+offset_left = -13.0
+offset_top = -14.0
+offset_right = 651.0
+offset_bottom = 374.0
+color = Color(0.08627451, 0.039215688, 0.21960784, 1)
