@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://2ig2xcx30bor" path="res://UNSORTED/lookingeyecodeexcerpt.gd" id="13_p2acp"]
 [ext_resource type="AudioStream" uid="uid://dswpxo6jj05qb" path="res://Assets/Audio/haven.ogg" id="14_847xq"]
 [ext_resource type="Shader" uid="uid://ck7dn1gxjm7jv" path="res://UNSORTED/vignette.gdshader" id="15_aui5h"]
+[ext_resource type="FontFile" uid="uid://d5e1o6i7eort" path="res://Assets/Texture/DigitalDisco.ttf" id="15_ldwv2"]
 [ext_resource type="PackedScene" uid="uid://ck2yrrml6ckwl" path="res://UNSORTED/wind.tscn" id="16_17qe0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_il6x7"]
@@ -2628,6 +2629,41 @@ texture = SubResource("AtlasTexture_nvmsg")
 [node name="eye" type="Sprite2D" parent="Level/Eyes/Eyetree2" unique_id=575714044]
 scale = Vector2(0.8572376, 0.8098203)
 texture = SubResource("AtlasTexture_l2bp3")
+
+[node name="Tutorial" type="Node2D" parent="Level" unique_id=487372295]
+position = Vector2(-2816, 480)
+
+[node name="Label" type="Label" parent="Level/Tutorial" unique_id=1526787008]
+offset_left = -8.0
+offset_top = 128.0
+offset_right = 122.0
+offset_bottom = 151.0
+theme_override_fonts/font = ExtResource("15_ldwv2")
+text = "The Ball can jump"
+
+[node name="Label2" type="Label" parent="Level/Tutorial" unique_id=1278070053]
+offset_left = 488.0
+offset_top = 72.0
+offset_right = 621.0
+offset_bottom = 95.0
+theme_override_fonts/font = ExtResource("15_ldwv2")
+text = "The Paddle can hit"
+
+[node name="Label3" type="Label" parent="Level/Tutorial" unique_id=882969452]
+offset_left = 488.0
+offset_top = 96.0
+offset_right = 707.0
+offset_bottom = 119.0
+theme_override_fonts/font = ExtResource("15_ldwv2")
+text = "Hit thrice, then charge up a hit"
+
+[node name="Label4" type="Label" parent="Level/Tutorial" unique_id=1344397503]
+offset_left = 872.0
+offset_top = -176.0
+offset_right = 1091.0
+offset_bottom = -153.0
+theme_override_fonts/font = ExtResource("15_ldwv2")
+text = "Cooperate and move forward"
 
 [node name="SmallPause" type="Timer" parent="." unique_id=997796193]
 wait_time = 0.1
