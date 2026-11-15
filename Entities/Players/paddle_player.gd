@@ -59,7 +59,8 @@ func _physics_process(delta: float) -> void:
 			direction = global_position.direction_to(get_global_mouse_position())
 		else:
 			direction = Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
-			
+			if direction.length() < 0.3:
+				direction = Vector2.UP
 		if charge >= max_charge and hold_amount > 0.2:
 			attack_anim.play("attack2")
 			player_attack_2.rotation = direction.angle()

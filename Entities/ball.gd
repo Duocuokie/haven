@@ -5,6 +5,8 @@ signal big_attack_hit
 signal small_attack_hit
 signal grounded
 
+var bounce_unlocked = false
+
 @export var small_hit_textures : Array[Texture]
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
@@ -35,7 +37,7 @@ var lastDir = 1
 
 var gravity = 700
 
-var juggle_grav = 400
+var juggle_grav = 370
 var throw_grav = 750
 
 var friction = 1000
