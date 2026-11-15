@@ -2687,6 +2687,15 @@ text = "Attack by realeasing Mouse 1 or any trigger
 Once hit 3 times, hold to charge and release
 for a big attack"
 
+[node name="Label7" type="Label" parent="Level/Tutorial" unique_id=1546401064]
+offset_left = 696.0
+offset_top = -40.0
+offset_right = 1145.0
+offset_bottom = 22.0
+theme_override_fonts/font = ExtResource("15_ldwv2")
+text = "If the ball stays grounded too 
+long you will loose your charge"
+
 [node name="Label4" type="Label" parent="Level/Tutorial" unique_id=1344397503]
 offset_left = 1200.0
 offset_top = -256.0
