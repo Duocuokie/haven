@@ -1,6 +1,6 @@
 extends GPUParticles2D
 @onready var camera: camerMover = $"../LevelCamera"
 
-func _process(_delta)->void:
+func _process(_delta) -> void:
 	if camera:
-		process_material.set("emission_shape_offset", camera.position + Vector2(320.0, 0.0))
+		position = camera.position + Vector2(320.0, 0.0)

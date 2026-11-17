@@ -2821,29 +2821,6 @@ offset_top = -48.0
 offset_right = 648.0
 offset_bottom = 392.0
 
-[node name="Wind" parent="." unique_id=1996353546 instance=ExtResource("16_17qe0")]
-
-[node name="Wind6" parent="." unique_id=920017431 instance=ExtResource("16_17qe0")]
-position = Vector2(-1200, 100)
-
-[node name="Wind2" parent="." unique_id=2129044611 instance=ExtResource("16_17qe0")]
-position = Vector2(600, 0)
-
-[node name="Wind3" parent="." unique_id=2061257096 instance=ExtResource("16_17qe0")]
-position = Vector2(1200, 0)
-
-[node name="Wind4" parent="." unique_id=405433634 instance=ExtResource("16_17qe0")]
-position = Vector2(-600, 0)
-
-[node name="Wind5" parent="." unique_id=1254996969 instance=ExtResource("16_17qe0")]
-position = Vector2(-1800, 100)
-
-[node name="Wind7" parent="." unique_id=1942419795 instance=ExtResource("16_17qe0")]
-position = Vector2(-2400, 500)
-
-[node name="Wind8" parent="." unique_id=1072392040 instance=ExtResource("16_17qe0")]
-position = Vector2(-3000, 600)
-
 [node name="Area2D" type="Area2D" parent="." unique_id=704107949]
 collision_layer = 0
 collision_mask = 128
@@ -2852,6 +2829,9 @@ script = ExtResource("19_034jk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1697906386]
 position = Vector2(-344, -64)
 shape = SubResource("RectangleShape2D_c4hok")
+
+[node name="Wind" parent="." unique_id=1996353546 instance=ExtResource("16_17qe0")]
+position = Vector2(-2700, 600)
 
 [connection signal="timeout" from="SmallPause" to="." method="unpause"]
 [connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

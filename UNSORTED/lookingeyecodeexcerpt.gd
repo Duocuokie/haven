@@ -10,7 +10,7 @@ func _ready():
 		if child.has_node("eye2"):
 			spritegroup.append(child.get_node("eye2"))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	for sprite: Sprite2D in spritegroup:
 		var direction : Vector2 = target.global_position - sprite.global_position
 		sprite.offset = direction.normalized() * 3

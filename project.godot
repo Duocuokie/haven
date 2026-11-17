@@ -24,7 +24,6 @@ boot_splash/minimum_display_time=500
 
 SignalBus="*uid://bfn5dfq3crcvu"
 Utils="*uid://bs8d7rwpbq25p"
-Wind="*uid://br4gqcvh125td"
 
 [display]
 
