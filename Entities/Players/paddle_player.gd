@@ -14,11 +14,13 @@ signal charge_change(charge : int)
 @onready var player_attack: Area2D = $PlayerAttack
 @onready var player_attack_2: PlayerAttack = $PlayerAttack2
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var small_hit_ball_particle: GPUParticles2D = $SmallHitBallParticle
+@onready var anim_flash: AnimationPlayer = $AnimationPlayer2
 
 
-var SPEED = 150.0
+var SPEED = 120.0
 const JUMP_VELOCITY = -330.0
-var ACCEL = 1000.0 
+var ACCEL = 900.0 
 const  FRICT = 1500.0
 var gravity = 700
 
@@ -35,7 +37,14 @@ var charge = 0 :
 		charge = x
 		charge_change.emit(x)
 	
-var hold_amount = 0 
+var hold_amount = 0  : 
+	set(x):
+		hold_amount = x
+		if hold_amount > 0.2 and !has_hold_sig:
+			small_hit_ball_particle.emitting = true
+			anim_flash.play("flash")
+			has_hold_sig = true
+var has_hold_sig := false
 var max_charge = 3
 
 
@@ -71,6 +80,7 @@ func _physics_process(delta: float) -> void:
 			player_attack.rotation = direction.angle()
 			player_attack.direction = direction
 		hold_amount = 0
+		has_hold_sig = false
 		
 
 #func _physics_process(delta: float) -> void:

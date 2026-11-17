@@ -18,6 +18,7 @@ var last_dir := 0
 var buffer := false
 var hold_interupt = false
 
+var has_jumped := false
 var accel : int
 var big_bounce := false
 var was_in_air := false
@@ -53,6 +54,7 @@ func _physics_process(delta):
 				actor.velocity.x = 0
 				actor.velocity.y = actor.JUMP_VELOCITY * 2
 				big_bounce = true
+				
 	if not actor.is_on_floor():
 		if actor.wasOnFloor && !actor.jumped:
 			actor.coyote = true
@@ -71,6 +73,7 @@ func _physics_process(delta):
 	else:
 		if !was_in_air: big_bounce = false
 		was_in_air = false
+		has_jumped = false
 		actor.wasOnFloor = true
 		accel = actor.ACCEL * 1.1
 
@@ -92,9 +95,10 @@ func _physics_process(delta):
 
 	#camera.position.x = move_toward(camera.position.x, 96 * direction, 128 * delta)
 	
-	if (Input.is_action_just_pressed(Utils.controls[control]["jump"]) || buffer) and can_jump and not big_bounce:
+	if (Input.is_action_just_pressed(Utils.controls[control]["jump"]) || buffer) and can_jump and not big_bounce :
 		if actor.is_on_floor() || actor.coyote:
 			actor.velocity.y = actor.JUMP_VELOCITY
+			has_jumped = true
 			if jump_audio:
 				jump_audio.play()
 			actor.jumped = true
@@ -103,7 +107,7 @@ func _physics_process(delta):
 				bufferTimer.start()
 				buffer = true
 	else:
-		if Input.is_action_just_released(Utils.controls[control]["jump"]) && actor.velocity.y < 0 and !big_bounce:
+		if Input.is_action_just_released(Utils.controls[control]["jump"]) && actor.velocity.y < 0 and !big_bounce and has_jumped:
 			actor.velocity.y = actor.velocity.y / 2
 			
 	prev_pos = actor.global_position

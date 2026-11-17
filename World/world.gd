@@ -50,8 +50,8 @@ func _unhandled_input(_event : InputEvent) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	if Input.is_action_just_pressed("ui_page_up"):
-		get_tree().reload_current_scene()
+	#if Input.is_action_just_pressed("ui_page_up"):
+		#get_tree().reload_current_scene()
 
 #func setCam(room : Room) -> void:
 	#var limits : Array = rooms[room.roomID].camLim

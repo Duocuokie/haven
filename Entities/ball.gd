@@ -19,6 +19,7 @@ var bounce_unlocked = false
 @onready var ground_timer: Timer = $GroundTimer
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var distortion_rect: ColorRect =$"../Shaders/Distortion"
+@onready var player_move_state: PlayerMoveState = $StateMachine/PlayerMoveState
 
 const HIT = preload("uid://bgmg7qe01dlaf")
 var SPEED = 135.0
@@ -68,6 +69,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if !invince_timer.is_stopped(): return
 	invince_timer.start()
 	var direction : Vector2
+	player_move_state.has_jumped = false
 	if area is PlayerAttack:
 		if area.global_position.direction_to(global_position).dot(Vector2.UP) < 0.0 and has_been_grounded:
 			direction = area.global_position.direction_to(global_position)
