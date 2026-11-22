@@ -17,7 +17,7 @@ boot_splash/bg_color=Color(0.08627451, 0.039215688, 0.21960784, 1)
 boot_splash/stretch_mode=5
 boot_splash/use_filter=false
 boot_splash/image="uid://tnxcgtwuvmct"
-config/icon="res://icon.svg"
+config/icon="uid://xj3vy1jw21o6"
 boot_splash/minimum_display_time=500
 
 [autoload]

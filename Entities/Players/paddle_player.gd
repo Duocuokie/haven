@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name  Player
 
 signal charge_change(charge : int)
-
+var slowdoon := false
 
 #@onready var coyoteTimer: Timer = $CoyoteTimer
 #@onready var sprite: Sprite2D = $Sprite2D
@@ -49,7 +49,7 @@ var max_charge = 3
 
 
 
-#func _ready() -> void:
+func _ready() -> void: charge = 3
 	#playerMoveState.dive.connect(fsm.change_state.bind(playerDiveState))
 	#playerDiveState.move.connect(fsm.change_state.bind(playerMoveState))
 	#global_position=Global.checkpoint
@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 		hold_amount += delta
 		Engine.time_scale = lerp(Engine.time_scale, 0.5, 10 * delta)
 	else:
-		Engine.time_scale = 1.00
+		Engine.time_scale = 1.0
 		
 		
 	if Input.is_action_just_released("attack") or Input.is_action_just_released("otherattack"):
